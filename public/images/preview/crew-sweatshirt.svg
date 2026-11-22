@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 900" fill="none">
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="720" y2="900" gradientUnits="userSpaceOnUse"><stop stop-color="#eeece5"/><stop offset="1" stop-color="#d4d0c6"/></linearGradient>
+    <linearGradient id="fabric" x1="240" y1="145" x2="480" y2="785" gradientUnits="userSpaceOnUse"><stop stop-color="#3c5447"/><stop offset="1" stop-color="#24382e"/></linearGradient>
+    <filter id="shadow" x="115" y="100" width="490" height="760" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feGaussianBlur stdDeviation="18"/></filter>
+  </defs>
+  <path fill="url(#wall)" d="M0 0h720v900H0z"/>
+  <path fill="#b5b0a5" d="M84 190h552v2H84z" opacity=".4"/>
+  <ellipse cx="360" cy="798" fill="#222e27" filter="url(#shadow)" opacity=".28" rx="165" ry="22"/>
+  <path fill="url(#fabric)" d="m257 162 56-30 47 33 47-33 56 30 112 97-60 75-62-49 14 427c-72 21-168 21-240 0l14-427-62 49-60-75 138-97Z"/>
+  <path stroke="#273c31" stroke-width="11" d="M321 141c2 33 15 48 39 48s37-15 39-48"/>
+  <path fill="#31473a" d="M248 329h83v4h-83zm141 0h83v4h-83zM273 732h174v18H273z"/>
+  <path stroke="#718276" stroke-width="3" d="M278 261h164m-150 12h136"/>
+  <path stroke="#4d6355" stroke-width="4" d="M252 315 230 291m238 24 22-24"/>
+</svg>

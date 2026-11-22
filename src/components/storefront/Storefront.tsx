@@ -1,47 +1,32 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import {useMemo,useState,type FormEvent,type PointerEvent as ReactPointerEvent} from "react";
+import {useEffect,useMemo,useRef,useState,type FormEvent} from "react";
 import {PRODUCTS,CATEGORIES,formatPrice,type Product,type Category} from "@/lib/products";
 import {useCart} from "@/context/CartContext";
 import {Button} from "@/components/ui/Button";
 
 
-export function CinematicHero(){
- const heroProducts=[PRODUCTS[0],PRODUCTS[2],PRODUCTS[3]];
- function moveScene(event:ReactPointerEvent<HTMLDivElement>){
-  if(event.pointerType!=="mouse")return;
-  const rect=event.currentTarget.getBoundingClientRect();
-  const x=(event.clientX-rect.left)/rect.width-.5;
-  const y=(event.clientY-rect.top)/rect.height-.5;
-  event.currentTarget.style.setProperty("--scene-rotate-x",String(-y*8)+"deg");
-  event.currentTarget.style.setProperty("--scene-rotate-y",String(x*11)+"deg");
- }
- function resetScene(event:ReactPointerEvent<HTMLDivElement>){
-  event.currentTarget.style.setProperty("--scene-rotate-x","0deg");
-  event.currentTarget.style.setProperty("--scene-rotate-y","0deg");
- }
- return <section className="cinematic-hero text-shades-cream">
-  <Image src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=2200&q=90" alt="" fill priority sizes="100vw" className="cinematic-hero__backdrop"/>
-  <div className="cinematic-hero__veil"/>
-  <div className="cinematic-hero__grain"/>
-  <div className="relative z-10 mx-auto grid min-h-[850px] max-w-7xl items-center gap-2 px-4 pb-16 pt-24 sm:px-6 lg:min-h-[min(850px,88svh)] lg:grid-cols-[.88fr_1.12fr] lg:px-12 lg:py-16">
-   <div className="hero-copy relative z-20 max-w-2xl pt-6 lg:pt-0">
-    <p className="flex items-center gap-3 text-[9px] uppercase tracking-[.3em] text-white/75"><span className="h-px w-8 bg-white/60"/>Shades Coimbatore · The new point of view</p>
-    <h1 className="mt-7 font-serif text-[clamp(3.6rem,8vw,7.4rem)] font-normal leading-[.88] tracking-[-.045em]">Wear your<br/><em className="font-normal">own rhythm.</em></h1>
-    <p className="mt-7 max-w-md text-sm leading-7 text-white/80 sm:text-base">A considered edit of contemporary menswear and everyday essentials. Find the pieces that feel like you.</p>
-    <div className="mt-9 flex flex-wrap gap-3"><Link href="/shop" className="inline-flex min-h-12 items-center bg-shades-cream px-7 text-[10px] font-medium uppercase tracking-[.18em] text-shades-charcoal transition-colors hover:bg-white">Explore the collection <span className="ml-3">↗</span></Link><Link href="/about" className="inline-flex min-h-12 items-center border border-white/65 px-7 text-[10px] uppercase tracking-[.18em] text-white transition-colors hover:bg-white/10">The Shades edit</Link></div>
-    <div className="mt-12 flex items-center gap-4 text-[9px] uppercase tracking-[.18em] text-white/55"><span>01 / 03</span><span className="h-px w-12 bg-white/35"/><span>Discover the collection</span></div>
-   </div>
-   <div role="group" className="hero-3d-scene" onPointerMove={moveScene} onPointerLeave={resetScene} aria-label="Interactive three-dimensional preview of selected collection pieces">
-    <div className="hero-3d-halo hero-3d-halo--one"/><div className="hero-3d-halo hero-3d-halo--two"/>
-    <Link href={"/product/"+heroProducts[1].slug} className="hero-3d-card hero-3d-card--left" aria-label={"Explore "+heroProducts[1].name}><div className="hero-3d-card__image"><Image src={heroProducts[1].image} alt={heroProducts[1].alt} fill sizes="(max-width:768px) 35vw,22vw"/></div><span className="hero-3d-card__caption">{heroProducts[1].categoryLabel}</span></Link>
-    <Link href={"/product/"+heroProducts[0].slug} className="hero-3d-card hero-3d-card--main" aria-label={"Explore "+heroProducts[0].name}><div className="hero-3d-card__image"><Image src={heroProducts[0].image} alt={heroProducts[0].alt} fill priority sizes="(max-width:768px) 52vw,30vw"/></div><span className="hero-3d-card__caption"><span>{heroProducts[0].name}</span><span>↗</span></span></Link>
-    <Link href={"/product/"+heroProducts[2].slug} className="hero-3d-card hero-3d-card--right" aria-label={"Explore "+heroProducts[2].name}><div className="hero-3d-card__image"><Image src={heroProducts[2].image} alt={heroProducts[2].alt} fill sizes="(max-width:768px) 32vw,20vw"/></div><span className="hero-3d-card__caption">{heroProducts[2].categoryLabel}</span></Link>
-    <p className="hero-3d-note">A closer look at the edit <span>✳</span></p>
+export function ShowroomHero(){
+ const heroProducts=[PRODUCTS[0],PRODUCTS[2],PRODUCTS[3],PRODUCTS[5],PRODUCTS[1],PRODUCTS[4]];
+ const repeatedProducts=[...heroProducts,...heroProducts];
+ return <section className="showroom-hero">
+  <div className="showroom-hero__header"><span>SHADES / COIMBATORE</span><span>THE EVERYDAY EDIT · 2026</span></div>
+  <div className="showroom-hero__brand"><h1>SHADES</h1><p>Wear it your way</p></div>
+  <div className="showroom-hero__intro"><span>01 — The new season</span><span>Menswear, in motion</span></div>
+  <div className="showroom-viewport" aria-label="Featured pieces from the preview collection">
+   <div className="showroom-track">
+    {repeatedProducts.map((product,index)=>{
+     const isRepeated=index>=heroProducts.length;
+     return <Link key={(isRepeated?"repeat-":"")+product.id} href={"/product/"+product.slug} className="showroom-item" tabIndex={isRepeated?-1:undefined} aria-hidden={isRepeated||undefined} aria-label={isRepeated?undefined:"Explore "+product.name}>
+      <span className="showroom-item__hanger" aria-hidden="true"><svg viewBox="0 0 42 36" fill="none"><path d="M21 7.5a3.25 3.25 0 1 1 3.25 3.25c-1.6 0-2.6.8-2.6 2.3v2.1L37 27.1c1.6 1.3.7 3.9-1.4 3.9H6.4c-2.1 0-3-2.6-1.4-3.9l16.6-12"/></svg></span>
+      <div className="showroom-item__image"><Image src={product.image} alt={isRepeated?"":product.alt} fill sizes="(max-width:640px) 58vw,(max-width:1024px) 34vw,23vw" loading={index<heroProducts.length?"eager":"lazy"} className="object-cover"/></div>
+      <span className="showroom-item__caption"><span>{product.categoryLabel}</span><span>↗</span></span>
+     </Link>;
+    })}
    </div>
   </div>
-  <div className="cinematic-hero__index"><span>COIMBATORE</span><span>EST. / SHADES</span></div>
+  <div className="showroom-hero__footer"><span>Scroll to explore the collection</span><Link href="/shop">Enter the store <span aria-hidden="true">↗</span></Link><span>Coimbatore · India</span></div>
  </section>;
 }
 
@@ -69,13 +54,70 @@ export function ShopExperience({initialCategory}:{initialCategory?:string}){
  return <><div className="flex flex-col gap-5 border-y border-shades-beige py-5 md:flex-row md:items-center md:justify-between"><div className="flex flex-wrap gap-2"><button onClick={()=>setCategory("all")} aria-pressed={category==="all"} className={"filter-chip "+(category==="all"?"filter-chip--active":"")}>All pieces</button>{CATEGORIES.map(c=><button key={c.slug} onClick={()=>setCategory(c.slug as Category)} aria-pressed={category===c.slug} className={"filter-chip "+(category===c.slug?"filter-chip--active":"")}>{c.name}</button>)}</div><label className="flex items-center gap-3 text-[10px] uppercase tracking-[.15em] text-shades-stone">Sort by<select value={sort} onChange={e=>setSort(e.target.value)} className="min-h-11 border border-shades-beige bg-transparent px-3 text-xs text-shades-charcoal"><option value="featured">Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="name">Name</option></select></label></div><p className="mb-6 mt-5 text-[10px] uppercase tracking-[.14em] text-shades-stone">{products.length} preview pieces · sample catalogue</p><div className="grid grid-cols-2 gap-x-4 gap-y-9 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4">{products.map(p=><ProductCard key={p.id} product={p}/>)}</div></>;
 }
 
+function FitAdvisor({product,onSelectSize}:{product:Product;onSelectSize:(size:string)=>void}){
+ const [open,setOpen]=useState(false);
+ const [fit,setFit]=useState("Menswear");
+ const [height,setHeight]=useState(180);
+ const [weight,setWeight]=useState(72);
+ const [heightUnit,setHeightUnit]=useState<"cm"|"ft">("ft");
+ const [weightUnit,setWeightUnit]=useState<"kg"|"lb">("kg");
+ const dialogRef=useRef<HTMLDialogElement>(null);
+
+ useEffect(()=>{
+  const dialog=dialogRef.current;
+  if(!dialog)return;
+  if(open&&!dialog.open)dialog.showModal();
+  if(!open&&dialog.open)dialog.close();
+ },[open]);
+
+ const bmi=weight/((height/100)*(height/100));
+ const targetSize=bmi<18.5?"XS":bmi<21.5?"S":bmi<26?"M":bmi<30?"L":"XL";
+ const targetIndex=product.sizes.findIndex(size=>size.toUpperCase()===targetSize);
+ const fallbackIndex=bmi<19?0:bmi<22?1:bmi<25?2:bmi<29?3:4;
+ const recommendation=targetIndex>=0?product.sizes[targetIndex]:product.sizes[Math.min(fallbackIndex,product.sizes.length-1)];
+ const totalInches=Math.round(height/2.54);
+ const displayHeight=heightUnit==="cm"?Math.round(height):totalInches;
+ const displayWeight=weightUnit==="kg"?weight:Math.round(weight*2.20462);
+ const heightLabel=heightUnit==="cm"?Math.round(height)+" cm":Math.floor(totalInches/12)+"′ "+totalInches%12+"″";
+ const weightLabel=weightUnit==="kg"?weight+" kg":Math.round(weight*2.20462)+" lb";
+
+ return <>
+  <button type="button" onClick={()=>setOpen(true)} className="fit-trigger">Find your fit <span aria-hidden="true">↗</span></button>
+  <dialog ref={dialogRef} className="fit-dialog" aria-labelledby="fit-dialog-title" onClose={()=>setOpen(false)}>
+   <div className="fit-dialog__header"><span>SIZE ADVISOR</span><button type="button" onClick={()=>setOpen(false)} aria-label="Close size advisor">×</button></div>
+   <div className="fit-dialog__content">
+    <div className="fit-dialog__product"><span className="fit-dialog__swatch" aria-hidden="true"/><span><strong>{product.name}</strong><small>{formatPrice(product.price)} · Preview item</small></span></div>
+    <div className="fit-progress" aria-label="Step 1 of 3: Measurements"><span/><span/><span/></div>
+    <p className="fit-dialog__step">Step 1 of 3 · Measurements</p>
+    <h2 id="fit-dialog-title">Let’s find your fit.</h2>
+    <p className="fit-dialog__subtitle">Two quick details to get you started.</p>
+    <div className="fit-switch" role="group" aria-label="Fit profile">{["Womenswear","Menswear"].map(option=><button key={option} type="button" onClick={()=>setFit(option)} aria-pressed={fit===option}>{option}</button>)}</div>
+    <div className="fit-measurement">
+     <div className="fit-measurement__person" aria-hidden="true"><svg viewBox="0 0 48 150" fill="none"><circle cx="24" cy="12" r="8"/><path d="M14 30h20l5 52-9 61M14 30 9 82l9 61m-8-83h28M24 30v53"/></svg></div>
+     <div className="fit-measurement__controls">
+      <div className="fit-unit"><span>HEIGHT</span><div><button type="button" aria-pressed={heightUnit==="cm"} onClick={()=>setHeightUnit("cm")}>CM</button><button type="button" aria-pressed={heightUnit==="ft"} onClick={()=>setHeightUnit("ft")}>FT/IN</button></div></div>
+      <strong className="fit-measurement__value">{heightLabel}</strong>
+      <div className="fit-range"><button type="button" aria-label="Decrease height" onClick={()=>setHeight(value=>Math.max(145,Number((value-(heightUnit==="cm"?1:2.54)).toFixed(2))))}>−</button><input type="range" min={heightUnit==="cm"?145:57} max={heightUnit==="cm"?205:81} value={displayHeight} onChange={event=>setHeight(heightUnit==="cm"?Number(event.target.value):Number((Number(event.target.value)*2.54).toFixed(2)))} aria-label={heightUnit==="cm"?"Height in centimeters":"Height in feet and inches"}/><button type="button" aria-label="Increase height" onClick={()=>setHeight(value=>Math.min(205,Number((value+(heightUnit==="cm"?1:2.54)).toFixed(2))))}>+</button></div>
+      <div className="fit-unit fit-unit--weight"><span>WEIGHT</span><div><button type="button" aria-pressed={weightUnit==="kg"} onClick={()=>setWeightUnit("kg")}>KG</button><button type="button" aria-pressed={weightUnit==="lb"} onClick={()=>setWeightUnit("lb")}>LB</button></div></div>
+      <strong className="fit-measurement__value">{weightLabel}</strong>
+      <div className="fit-range"><button type="button" aria-label="Decrease weight" onClick={()=>setWeight(value=>Math.max(40,Number((value-(weightUnit==="kg"?1:1/2.20462)).toFixed(2))))}>−</button><input type="range" min={weightUnit==="kg"?40:88} max={weightUnit==="kg"?120:265} value={displayWeight} onChange={event=>setWeight(weightUnit==="kg"?Number(event.target.value):Number((Number(event.target.value)/2.20462).toFixed(2)))} aria-label={"Weight in "+weightUnit}/><button type="button" aria-label="Increase weight" onClick={()=>setWeight(value=>Math.min(120,Number((value+(weightUnit==="kg"?1:1/2.20462)).toFixed(2))))}>+</button></div>
+     </div>
+    </div>
+    <div className="fit-estimate"><span><strong>LIVE ESTIMATE</strong><small>Based on your measurements</small></span><strong>{recommendation}</strong></div>
+    <p className="fit-disclaimer">Demo fit guidance only. This preview uses sample sizing and is not a guarantee of fit.</p>
+   </div>
+   <div className="fit-dialog__footer"><button type="button" onClick={()=>{onSelectSize(recommendation);setOpen(false);}}>Use size {recommendation} <span aria-hidden="true">→</span></button></div>
+  </dialog>
+ </>;
+}
+
 export function ProductDetails({product}:{product:Product}){
  const [size,setSize]=useState(product.sizes[0]);const [color,setColor]=useState(product.colors[0].name);const [qty,setQty]=useState(1);const [added,setAdded]=useState(false);const {addItem}=useCart();
  function add(){addItem({productId:product.id,size,color,quantity:qty});setAdded(true);}
  return <div className="grid gap-10 lg:grid-cols-[1.05fr_.95fr] lg:gap-20"><div className="grid grid-cols-2 gap-3"><div className="product-gallery-frame relative col-span-2 aspect-[4/5] overflow-hidden bg-[#e9e5dd] sm:col-span-1"><Image src={product.image} alt={product.alt} fill priority sizes="(max-width:1024px) 100vw,50vw" className="object-cover"/></div><div className="product-gallery-frame relative hidden aspect-[4/5] overflow-hidden bg-[#e9e5dd] sm:block"><Image src={product.secondaryImage} alt={"Alternate view of "+product.name} fill sizes="25vw" className="object-cover"/></div></div>
  <div className="lg:sticky lg:top-32 lg:self-start"><Link href="/shop" className="text-[9px] uppercase tracking-[.2em] text-shades-stone">Shop / {product.categoryLabel}</Link><p className="mt-7 text-[10px] uppercase tracking-[.2em] text-shades-forest">{product.categoryLabel}</p><h1 className="mt-3 font-serif text-3xl leading-tight sm:text-4xl">{product.name}</h1><p className="mt-5 text-lg">{formatPrice(product.price)}</p><p className="mt-2 text-[9px] uppercase tracking-[.15em] text-shades-stone">Preview price · sample catalogue only</p><p className="mt-8 max-w-lg text-sm leading-7 text-shades-stone">{product.description}</p>
  <div className="mt-8 border-t border-shades-beige pt-6"><p className="text-[10px] uppercase tracking-[.17em]">Colour / {color}</p><div className="mt-4 flex gap-3">{product.colors.map(c=><button key={c.name} type="button" onClick={()=>setColor(c.name)} aria-label={"Select "+c.name} aria-pressed={color===c.name} className={"h-8 w-8 rounded-full border-2 p-0.5 "+(color===c.name?"border-shades-charcoal":"border-transparent")}><span className="block h-full w-full rounded-full border border-black/10" style={{backgroundColor:c.value}}/></button>)}</div></div>
- <div className="mt-7"><div className="flex justify-between gap-3"><p className="text-[10px] uppercase tracking-[.17em]">Select size</p><span className="text-[10px] text-shades-stone">Size guide pending measurements</span></div><div className="mt-3 grid grid-cols-5 gap-2">{product.sizes.map(s=><button key={s} type="button" onClick={()=>setSize(s)} aria-pressed={size===s} className={"min-h-11 border text-xs "+(size===s?"border-shades-charcoal bg-shades-charcoal text-shades-cream":"border-shades-beige")}>{s}</button>)}</div></div>
+ <div className="mt-7"><div className="flex items-center justify-between gap-3"><p className="text-[10px] uppercase tracking-[.17em]">Select size</p><FitAdvisor product={product} onSelectSize={setSize}/></div><div className="mt-3 grid grid-cols-5 gap-2">{product.sizes.map(s=><button key={s} type="button" onClick={()=>setSize(s)} aria-pressed={size===s} className={"min-h-11 border text-xs "+(size===s?"border-shades-charcoal bg-shades-charcoal text-shades-cream":"border-shades-beige")}>{s}</button>)}</div></div>
  <div className="mt-7 flex items-center gap-4"><div className="flex h-12 items-center border border-shades-beige"><button type="button" onClick={()=>setQty(v=>Math.max(1,v-1))} aria-label="Decrease quantity" className="h-11 w-10">−</button><span className="w-7 text-center text-xs">{qty}</span><button type="button" onClick={()=>setQty(v=>Math.min(10,v+1))} aria-label="Increase quantity" className="h-11 w-10">+</button></div><Button onClick={add} className="flex-1">{added?"Added to bag":"Add to bag"}</Button></div>{added&&<p role="status" className="mt-3 text-xs text-shades-forest">Added to your preview bag.</p>}
  <div className="mt-9 space-y-3 border-t border-shades-beige pt-6 text-xs leading-6 text-shades-stone"><p><strong className="text-shades-charcoal">Product note</strong> — Images, descriptions, prices, variants and stock are sample content to be replaced with the approved catalogue.</p><p><strong className="text-shades-charcoal">Delivery and returns</strong> — Confirmed store policies will appear here once supplied.</p></div>
  </div></div>;

@@ -6,7 +6,8 @@ Private repository for the Shades Coimbatore fashion storefront demonstration.
 A premium, cinematic, editorial fashion experience inspired by the visual references supplied by the client: CANALI-style campaign storytelling, a Nike-style continuous horizontal clothing runway, and interactive product browsing.
 
 ## Frontend demonstration scope
-- Full-screen cinematic campaign hero with interactive CSS 3D product-card composition and pointer-reactive tilt.
+- Virtual-store homepage with a light editorial showroom rail and new arrivals directly below.
+- Responsive sample fit-advisor sheet with measurement sliders and a demo-only size recommendation.
 - Responsive category discovery and editorial sections.
 - Seamless horizontal rolling product runway with pause-on-hover/focus, touch scrolling and reduced-motion support.
 - Product cards with alternate-image transitions and dimensional hover.
@@ -15,9 +16,9 @@ A premium, cinematic, editorial fashion experience inspired by the visual refere
 - Search, editorial/about page, mobile navigation and store-information placeholder.
 
 ## Demo-only boundaries
-This is a frontend demonstration. Catalogue names, imagery, prices, variants and stock are sample content. Cart state is stored in the browser. Checkout and order confirmation are simulated locally: no order is sent, no payment is collected, and no personal data is transmitted. Shipping, tax, inventory and customer communications are not connected.
+This is a frontend demonstration. Catalogue names, local vector garment illustrations, prices, variants and stock are sample content. Cart state is stored in the browser. Checkout and order confirmation are simulated locally: no order is sent, no payment is collected, and no personal data is transmitted. Shipping, tax, inventory and customer communications are not connected.
 
-The CSS 3D treatment creates depth, perspective, floating cards and pointer-reactive movement; it does not claim to be a photorealistic WebGL garment model. Actual 3D garment assets can be introduced if supplied later.
+The fit advisor uses sample size guidance and is not a guarantee of fit. Local vector artwork keeps the demo self-contained until approved product photography and catalogue data are supplied.
 
 No real store address, operating hours, contact details, product catalogue or business policy has been invented.
 

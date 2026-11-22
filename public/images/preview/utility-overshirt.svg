@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 900" fill="none">
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="720" y2="900" gradientUnits="userSpaceOnUse"><stop stop-color="#e9e7df"/><stop offset="1" stop-color="#d1cdc2"/></linearGradient>
+    <linearGradient id="fabric" x1="250" y1="145" x2="475" y2="775" gradientUnits="userSpaceOnUse"><stop stop-color="#727865"/><stop offset="1" stop-color="#42483c"/></linearGradient>
+    <filter id="shadow" x="125" y="105" width="470" height="750" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feGaussianBlur stdDeviation="18"/></filter>
+  </defs>
+  <path fill="url(#wall)" d="M0 0h720v900H0z"/>
+  <path fill="#b5b0a5" d="M86 180h548v2H86zM86 758h548v2H86z" opacity=".4"/>
+  <ellipse cx="360" cy="793" fill="#272923" filter="url(#shadow)" opacity=".3" rx="164" ry="22"/>
+  <path fill="url(#fabric)" d="m248 158 70-30 42 43 42-43 70 30 95 105-60 61-48-47 15 452c-72 26-164 26-236 0l15-452-48 47-60-61 103-105Z"/>
+  <path fill="#838875" d="m318 128 42 43 42-43-19 73h-46l-19-73Z"/>
+  <path stroke="#343a31" stroke-width="5" d="m360 174 1 543"/>
+  <path stroke="#9ba08e" stroke-width="3" d="M265 313h84v93h-84zm107 0h84v93h-84z"/>
+  <path stroke="#989d8c" stroke-width="2" d="M276 328h61m-61 12h46m68-12h61m-61 12h46M250 277h40m140 0h40"/>
+  <path fill="#343a31" d="M349 245h9v12h-9zm0 76h9v12h-9zm0 76h9v12h-9zm0 76h9v12h-9zm0 76h9v12h-9zm0 76h9v12h-9z"/>
+  <path stroke="#353a31" stroke-width="3" d="M252 414h80m136 0h-80"/>
+</svg>

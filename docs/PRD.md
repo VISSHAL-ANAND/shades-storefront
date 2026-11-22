@@ -9,11 +9,11 @@ Build a premium, cinematic, mobile-first Shades Coimbatore fashion website demon
 - Product interaction references: browse products, inspect imagery, select size/colour and move through a convincing shopping flow.
 
 ## Frontend journeys
-1. Enter through a full-screen campaign hero with layered 3D product cards and interactive pointer tilt.
+1. Enter through a branded virtual-store display with a rolling clothing rail.
 2. Explore categories and editorial content.
 3. Watch or manually browse the continuous rolling clothing runway.
 4. Browse all pieces or category collections.
-5. Open a product, inspect alternate imagery and select colour, size and quantity.
+5. Open a product, inspect imagery, select colour/size/quantity, or use the sample fit advisor.
 6. Add items to the browser-local bag and adjust/remove quantities.
 7. Complete a simulated checkout and view a local demo order confirmation.
 8. Search the sample catalogue and view the Shades editorial page.
@@ -22,7 +22,7 @@ Build a premium, cinematic, mobile-first Shades Coimbatore fashion website demon
 - Continuous, seamless horizontal product loop.
 - Pause on hover, keyboard focus and active touch interaction.
 - Touch scrolling on mobile.
-- Perspective depth, floating layered hero cards, pointer-reactive tilt, image transitions and scroll reveals.
+- A showroom clothing rail, product image transitions and restrained scroll reveals.
 - Respect prefers-reduced-motion and preserve usable navigation/content without animation.
 
 ## Demo content

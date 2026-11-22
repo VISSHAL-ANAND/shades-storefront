@@ -1,15 +1,35 @@
 import Image from "next/image";
 import Link from "next/link";
 import {Container} from "@/components/ui/Container";
-import {CinematicHero,ProductCard,RollingShowcase,StoreNotice} from "@/components/storefront/Storefront";
+import {ProductCard,RollingShowcase,ShowroomHero,StoreNotice} from "@/components/storefront/Storefront";
 import {CATEGORIES,PRODUCTS} from "@/lib/products";
+
 export default function Home(){
  return <>
-  <CinematicHero/>
-  <section className="reveal-on-scroll py-14 sm:py-20"><Container><div className="mb-9 flex items-end justify-between gap-5"><div><p className="text-[9px] uppercase tracking-[.22em] text-shades-stone">Find your fit</p><h2 className="mt-3 font-serif text-3xl sm:text-4xl">Shop by category</h2></div><Link href="/shop" className="hidden min-h-11 items-center text-[10px] uppercase tracking-[.16em] underline underline-offset-4 sm:inline-flex">All pieces ↗</Link></div><div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">{CATEGORIES.map((c,i)=><Link key={c.slug} href={"/collections/"+c.slug} className={"group "+(i===0?"col-span-2 sm:col-span-1":"")}><div className="relative aspect-[4/5] overflow-hidden bg-[#e9e5dd]"><Image src={c.image} alt={c.name+" category preview"} fill sizes="(max-width:640px) 48vw,20vw" className="object-cover transition-transform duration-700 group-hover:scale-105"/><div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"/><div className="absolute bottom-4 left-4 right-4 text-white"><h3 className="font-serif text-xl sm:text-2xl">{c.name}</h3><p className="mt-1 text-[9px] uppercase tracking-[.14em] text-white/75">{c.description}</p></div></div></Link>)}</div></Container></section>
+  <ShowroomHero/>
+  <section className="reveal-on-scroll py-14 sm:py-20">
+   <Container>
+    <div className="mb-9 flex items-end justify-between gap-5">
+     <div><p className="text-[9px] uppercase tracking-[.22em] text-shades-stone">Fresh perspective</p><h2 className="mt-3 font-serif text-3xl sm:text-4xl">New arrivals</h2><p className="mt-3 max-w-md text-xs leading-6 text-shades-stone">A preview selection of pieces for the everyday wardrobe.</p></div>
+     <Link href="/collections/new-arrivals" className="hidden min-h-11 items-center text-[10px] uppercase tracking-[.16em] underline underline-offset-4 sm:inline-flex">View all ↗</Link>
+    </div>
+    <div className="grid grid-cols-2 gap-x-4 gap-y-9 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4">{PRODUCTS.filter(p=>p.isNew).map(p=><ProductCard key={p.id} product={p}/>)}</div>
+   </Container>
+  </section>
   <RollingShowcase/>
-  <section className="reveal-on-scroll py-16 sm:py-24"><Container><div className="mb-9 flex items-end justify-between gap-5"><div><p className="text-[9px] uppercase tracking-[.22em] text-shades-stone">Fresh perspective</p><h2 className="mt-3 font-serif text-3xl sm:text-4xl">New in the edit</h2><p className="mt-3 max-w-md text-xs leading-6 text-shades-stone">A preview selection of pieces for the everyday wardrobe.</p></div><Link href="/collections/new-arrivals" className="hidden min-h-11 items-center text-[10px] uppercase tracking-[.16em] underline underline-offset-4 sm:inline-flex">View all ↗</Link></div><div className="grid grid-cols-2 gap-x-4 gap-y-9 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4">{PRODUCTS.filter(p=>p.isNew).map(p=><ProductCard key={p.id} product={p}/>)}</div></Container></section>
-  <section className="reveal-on-scroll grid min-h-[540px] bg-[#d9d4cb] lg:grid-cols-2"><div className="relative min-h-[380px] overflow-hidden"><Image src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1400&q=85" alt="Editorial fashion styling preview" fill sizes="(max-width:1024px) 100vw,50vw" className="object-cover transition-transform duration-[1400ms] hover:scale-105"/></div><div className="flex flex-col justify-center px-6 py-16 sm:px-12 lg:px-20"><p className="text-[9px] uppercase tracking-[.22em] text-shades-stone">The Shades point of view</p><h2 className="mt-5 max-w-lg font-serif text-4xl leading-tight sm:text-5xl">Less noise.<br/><em>More character.</em></h2><p className="mt-6 max-w-md text-sm leading-7 text-shades-stone">Build a wardrobe around pieces you reach for. Explore relaxed essentials, considered layers and the details that make a look your own.</p><Link href="/about" className="mt-8 inline-flex min-h-11 w-fit items-center border-b border-shades-charcoal text-[10px] uppercase tracking-[.17em]">Discover the edit ↗</Link></div></section>
+  <section className="reveal-on-scroll py-14 sm:py-20">
+   <Container>
+    <div className="mb-9 flex items-end justify-between gap-5">
+     <div><p className="text-[9px] uppercase tracking-[.22em] text-shades-stone">Find your fit</p><h2 className="mt-3 font-serif text-3xl sm:text-4xl">Shop by category</h2></div>
+     <Link href="/shop" className="hidden min-h-11 items-center text-[10px] uppercase tracking-[.16em] underline underline-offset-4 sm:inline-flex">All pieces ↗</Link>
+    </div>
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">{CATEGORIES.map((category,index)=><Link key={category.slug} href={"/collections/"+category.slug} className={"group "+(index===0?"col-span-2 sm:col-span-1":"")}><div className="relative aspect-[4/5] overflow-hidden bg-[#e9e5dd]"><Image src={category.image} alt={category.name+" category preview"} fill sizes="(max-width:640px) 48vw,20vw" className="object-cover transition-transform duration-700 group-hover:scale-105"/><div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"/><div className="absolute bottom-4 left-4 right-4 text-white"><h3 className="font-serif text-xl sm:text-2xl">{category.name}</h3><p className="mt-1 text-[9px] uppercase tracking-[.14em] text-white/75">{category.description}</p></div></div></Link>)}</div>
+   </Container>
+  </section>
+  <section className="reveal-on-scroll grid min-h-[540px] bg-[#d9d4cb] lg:grid-cols-2">
+   <div className="relative min-h-[380px] overflow-hidden"><Image src={PRODUCTS[0].image} alt="Sample illustration of a Shades clothing piece" fill sizes="(max-width:1024px) 100vw,50vw" className="object-cover transition-transform duration-[1400ms] hover:scale-105"/></div>
+   <div className="flex flex-col justify-center px-6 py-16 sm:px-12 lg:px-20"><p className="text-[9px] uppercase tracking-[.22em] text-shades-stone">The Shades point of view</p><h2 className="mt-5 max-w-lg font-serif text-4xl leading-tight sm:text-5xl">Less noise.<br/><em>More character.</em></h2><p className="mt-6 max-w-md text-sm leading-7 text-shades-stone">Build a wardrobe around pieces you reach for. Explore relaxed essentials, considered layers and the details that make a look your own.</p><Link href="/about" className="mt-8 inline-flex min-h-11 w-fit items-center border-b border-shades-charcoal text-[10px] uppercase tracking-[.17em]">Discover the edit ↗</Link></div>
+  </section>
   <StoreNotice/>
   <section className="py-12 text-center"><p className="text-[9px] uppercase tracking-[.2em] text-shades-stone">Preview catalogue</p><p className="mx-auto mt-3 max-w-2xl px-5 text-xs leading-6 text-shades-stone">This storefront uses temporary editorial imagery and sample product names, prices and variants. The final catalogue and brand-approved imagery can be added when supplied.</p></section>
  </>;

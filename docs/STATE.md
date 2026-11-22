@@ -1,20 +1,20 @@
 # Project State
 
 ## Current stage
-The frontend is being upgraded from a basic storefront preview to a cinematic, dimensional fashion experience. The current visual upgrade is committed after review; local lint, typecheck, build and browser verification remain pending.
+The storefront demo is being aligned with the supplied virtual-store and size-advisor references. The homepage and fit-advisor UI are implemented; lint, typecheck, build and browser verification remain pending.
 
 ## Repository and stack
 - Repository: VISSHAL-ANAND/shades-storefront (private).
 - Branch: main.
 - Next.js 16.4.6 App Router, React 19.3.0, TypeScript 5.9.3, Tailwind CSS 4.3.5.
 - Node.js v22.20.0 and pnpm 10.33.0 are the established local environment.
-- No additional 3D dependency is planned for this CSS 3D implementation.
+- No additional 3D dependency is used.
 
 ## Visual experience
-- CANALI-inspired cinematic/editorial campaign direction with warm cream, forest, beige and charcoal.
-- Interactive hero composition with three layered product cards, perspective, pointer-reactive tilt and subtle floating movement.
+- Premium virtual-store homepage with a light editorial showroom, hanging product rail and the new-arrivals section immediately below.
 - Alternate product imagery and dimensional hover transitions on product cards.
 - Continuous horizontal product runway with duplicated items, seamless-loop spacing, hover/focus pause, touch scrolling and reduced-motion fallback.
+- Product size-advisor drawer with interactive measurement controls and a clearly labelled sample recommendation.
 - Scroll-reveal progressive enhancement where supported.
 - Responsive layout and existing shopping navigation.
 
@@ -32,15 +32,16 @@ The frontend is being upgraded from a basic storefront preview to a cinematic, d
 - Checkout success and reference number are generated locally; no server order is created.
 - No payment gateway, live inventory, shipping/tax rules, customer communication, accounts, admin dashboard or POS is connected.
 - Store address, hours, contact and brand-approved product assets remain unconfirmed.
-- The CSS 3D scene is a dimensional presentation, not a true 3D garment viewer. True garment models would require approved model assets.
+- Product imagery uses CSS hover depth effects, not a true 3D garment viewer. True garment models would require approved model assets.
 
 ## Verification status
 - Foundation checks passed locally at commit 67222d2.
-- The new cinematic/3D visual upgrade has not been run locally by the assistant. User must pull latest main and run lint, typecheck and build.
-- Browser checks at 390px, 768px, 1024px and 1440px; showcase loop, pointer interaction, reduced motion, checkout demo, image loading and accessibility remain to be verified.
+- `pnpm build` and `pnpm typecheck` pass; targeted ESLint passes for the modified TypeScript files.
+- Full `pnpm lint` remains blocked by the existing `react-hooks/set-state-in-effect` error in `src/context/CartContext.tsx`.
+- Browser checks confirmed local artwork loads, the fit advisor updates units and applies a recommendation, and the layout has no horizontal overflow at 390px, 768px, 1024px and 1440px.
+- Runway timing/touch pause, reduced-motion, checkout demo and broader keyboard/accessibility checks remain to be verified.
 
 ## Next actions
-1. Pull latest main and run pnpm lint, pnpm typecheck and pnpm build.
-2. Start the site and inspect the hero, rolling runway, product cards, shop, product detail and demo checkout.
-3. Verify responsive layout, keyboard/touch behavior and reduced-motion.
-4. Replace sample imagery and catalogue only when approved Shades assets/data are supplied.
+1. Address the existing CartContext lint error separately.
+2. Verify runway timing/touch pause, reduced-motion and the checkout demo.
+3. Replace sample illustrations and catalogue only when approved Shades assets/data are supplied.

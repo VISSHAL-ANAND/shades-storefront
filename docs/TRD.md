@@ -5,15 +5,15 @@
 - Server Components for route shells and static catalogue; Client Components for product controls, cart, filters and simulated checkout.
 - Static sample catalogue and generated product/collection routes.
 - Browser localStorage for demo cart only.
-- Remote Unsplash placeholder images configured in next.config.ts.
+- Local SVG garment illustrations for the placeholder catalogue; replace with approved photography when supplied.
 
-## 3D and motion approach
-- CSS perspective, preserve-3d transforms, layered cards, pointer-reactive custom properties and keyframe float animations.
+## Motion approach
+- CSS perspective and preserve-3d transforms for product image hover depth.
 - CSS-only product image crossfades and dimensional hover transitions.
-- CSS continuous runway animation over a duplicated product sequence; pause on hover/focus/active.
+- CSS continuous showroom and runway animations over duplicated product sequences; pause on hover/focus/active.
 - CSS scroll-timeline reveal as progressive enhancement behind @supports.
 - prefers-reduced-motion disables nonessential motion and leaves content accessible.
-- No Three.js, WebGL or react-three-fiber dependency is required for this presentation-only 3D treatment.
+- No Three.js, WebGL or react-three-fiber dependency is used.
 
 ## Demo checkout
 - Client-side form validation and local success state only.

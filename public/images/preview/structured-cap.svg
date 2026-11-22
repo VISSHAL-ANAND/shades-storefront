@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 900" fill="none">
+  <defs>
+    <linearGradient id="wall" x1="30" y1="0" x2="690" y2="900" gradientUnits="userSpaceOnUse"><stop stop-color="#efede7"/><stop offset="1" stop-color="#d9d4ca"/></linearGradient>
+    <linearGradient id="fabric" x1="240" y1="280" x2="488" y2="620" gradientUnits="userSpaceOnUse"><stop stop-color="#464844"/><stop offset="1" stop-color="#202321"/></linearGradient>
+    <filter id="shadow" x="110" y="250" width="500" height="400" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feGaussianBlur stdDeviation="19"/></filter>
+  </defs>
+  <path fill="url(#wall)" d="M0 0h720v900H0z"/>
+  <path stroke="#c5c0b6" d="M72 138h576M72 765h576" opacity=".4"/>
+  <ellipse cx="360" cy="638" fill="#282a27" filter="url(#shadow)" opacity=".3" rx="200" ry="23"/>
+  <path fill="url(#fabric)" d="M164 497c4-112 83-191 196-191s192 79 196 191l-14 40c-115 40-249 40-364 0l-14-40Z"/>
+  <path fill="#2c302d" d="M164 497c75 7 131 25 174 53-120 27-222 21-290 0-23-8-24-36 0-44 35-12 75-14 116-9Z"/>
+  <path stroke="#797b73" stroke-width="3" d="M212 457c36-57 86-85 148-85s112 28 148 85m-148-83v150m-145-25c90 26 200 26 290 0"/>
+  <path fill="#d4d0c7" d="M325 466h70v15h-70z" opacity=".88"/>
+</svg>

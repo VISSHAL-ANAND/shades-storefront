@@ -9,8 +9,8 @@
 - Product and collection slugs are statically generated from sample data.
 
 ## Visual motion
-- CSS tokens, campaign scene, hero perspective, card transitions, runway animation and reduced-motion rules live in src/app/globals.css.
-- CinematicHero uses CSS 3D transforms and pointer-driven CSS custom properties.
+- CSS tokens, showroom rail, card transitions, runway animation and reduced-motion rules live in src/app/globals.css.
+- The product catalogue maps to local SVG sample art in public/images/preview.
 - No WebGL scene or 3D runtime dependency is currently used.
 
 ## Demo checkout
