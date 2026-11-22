@@ -3,7 +3,7 @@
 Private project repository for the Shades Coimbatore cinematic fashion storefront.
 
 ## Current status
-- Stage: Phase 1 — Foundation; task P1.1 corrected and verified (pending review before commit).
+- Stage: Phase 1 — Foundation; task P1.2 (Design System and Responsive Shell) corrected and verified (ready for review before commit).
 - Development environment: Google Antigravity.
 - Workflow: guided, milestone-based.
 - Implementation stack: Next.js 16.4.6 (App Router), React 19.3.0, TypeScript 5.9.3, Tailwind CSS 4.3.5 via `@tailwindcss/postcss` 4.3.5, PostCSS 8.5.33, ESLint 9.39.5.

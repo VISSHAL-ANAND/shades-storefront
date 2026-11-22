@@ -33,9 +33,39 @@
 ## D-007 — Build engine and typography baseline
 - Status: Approved (P1.1).
 - `next.config.ts` streamlined to standard configuration without custom Turbopack CSS loader overrides.
-- Production build uses `next build --webpack` to ensure cross-platform Windows stability without child-process IPC failure.
-- Typography baseline relies on system font fallbacks in `src/app/layout.tsx` and `src/app/globals.css` rather than build-time remote Google Fonts fetches, ensuring reliable offline/sandboxed builds. Approved brand typography will be imported locally in P1.2.
+- Production build uses `next build --webpack` to ensure cross-platform Windows stability.
+- Typography baseline relies on system font fallbacks ensuring reliable offline/sandboxed builds.
 - GSAP and other animation libraries are deferred to P2 per task discipline.
+
+## D-008 — Design system architecture, tokens, and accessible responsive shell
+- Status: Implemented, corrected, and verified (P1.2, awaiting review before commit).
+- Color Tokens: Defined in `src/app/globals.css` with `@theme` block:
+  - `--color-shades-cream`: `#FBF9F5` (base background canvas)
+  - `--color-shades-charcoal`: `#141413` (primary text, deep contrast)
+  - `--color-shades-forest`: `#1B3322` (primary brand accent)
+  - `--color-shades-beige`: `#E8E2D8` (decorative borders/dividers only — 1.23:1 contrast, NOT for text)
+  - `--color-shades-stone`: `#5A5854` (secondary muted text)
+  - `--color-shades-white`: `#FFFFFF`, `--color-shades-stone-light`: `#8E8A83`, `--color-shades-gold`: `#826938` also defined.
+- Color status: All provisional pending explicit client sign-off.
+- WCAG Contrast (actual computed values):
+  - Charcoal `#141413` on Cream `#FBF9F5`: **17.53:1** — passes AAA (normal text ≥7:1).
+  - Forest `#1B3322` on Cream `#FBF9F5`: **12.94:1** — passes AAA (normal text ≥7:1).
+  - Cream `#FBF9F5` on Forest `#1B3322`: **12.94:1** — passes AAA (primary buttons).
+  - Stone `#5A5854` on Cream `#FBF9F5`: **6.75:1** — passes AA (normal text ≥4.5:1).
+  - Beige `#E8E2D8` on Cream `#FBF9F5`: **1.23:1** — not compliant for text. Restricted to decorative use only.
+- Typography Stack:
+  - Serif (`font-serif`): `Didot, "Bodoni MT", Cinzel, "Playfair Display", Georgia, serif`.
+  - Sans (`font-sans`): `system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`.
+  - Offline-safe; zero external fetches at build time.
+- Responsive Shell Architecture:
+  - `Header`: Sticky. Desktop navigation revealed at `lg:` (≥1024px). Below 1024px (mobile and tablet), hamburger drawer is used. Brand link enforces `min-h-[44px]`.
+  - `MobileNav`: Native HTML `<dialog>` with `showModal()`/`close()`. Provides native focus trapping, accessibility semantics, Escape key dismissal, backdrop dismissal, and body scroll lock. Scroll-lock cleanup preserves the pre-existing overflow value.
+  - `AnnouncementBar`: Neutral brand identity announcement only. No unverified service claims.
+  - `Footer`: Multi-column footer with explicit placeholders; all link anchors are `#hash` placeholders until pages are built. Footer links padded to `min-h-[44px]`.
+  - Touch targets: All interactive elements enforce ≥44px height minimum. Verified via CDP measurement.
+  - Reduced-motion: `@media (prefers-reduced-motion: reduce)` in `globals.css`.
+  - Non-functional controls: Search icon and bag button converted to non-interactive indicators pending cart/search implementation.
+  - Page demonstration: No fake buttons or non-existent anchor links; editorial text with real `#store-info` anchor.
 
 ## Pending
 Backend/database, payment provider/account, inventory source/sync, delivery/pickup, authentication, hosting, and domain.
