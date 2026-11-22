@@ -1,11 +1,13 @@
 # Project State
 
 ## Current stage
-The full customer-facing frontend preview has been implemented in one consolidated storefront pass. Local verification and visual review are still required.
+The complete customer-facing frontend preview is implemented and committed on main at c14c282. Local verification and visual review are still required.
 
 ## Repository and stack
 - Repository: VISSHAL-ANAND/shades-storefront (private).
 - Branch: main.
+- Latest storefront implementation: c14c282 (feat: build complete Shades storefront frontend preview).
+- Previous foundation verification commit: 67222d2.
 - Next.js 16.4.6 App Router, React 19.3.0, TypeScript 5.9.3, Tailwind CSS 4.3.5.
 - Node.js v22.20.0 and pnpm 10.33.0 are the established local environment.
 
@@ -30,7 +32,7 @@ The full customer-facing frontend preview has been implemented in one consolidat
 
 ## Verification status
 - Previous foundation checks passed locally at commit 67222d2: lint, typecheck and production build.
-- The full storefront changes have not been run locally by the assistant. The user must pull the latest main and rerun lint, typecheck and build.
+- The full storefront commit c14c282 has not been run locally by the assistant. The user must pull latest main and rerun lint, typecheck and build.
 - Browser checks, image loading, touch scrolling, dialog behavior, accessibility and performance still require local visual verification.
 
 ## Next actions
