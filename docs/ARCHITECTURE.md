@@ -1,19 +1,18 @@
 # Architecture
 
-## Status
-Frontend foundation runtime initialized (P1.1 complete). Customer-facing App Router application in place.
+## Frontend preview
+- Next.js App Router routes live in src/app.
+- Product catalogue and collection metadata are currently static in src/lib/products.ts.
+- Storefront UI and interactive experiences are in src/components/storefront/Storefront.tsx.
+- Cart state is isolated in src/context/CartContext.tsx and persisted locally in the browser.
+- Root layout wraps the site in CartProvider and composes announcement, header, main content and footer.
+- Product and collection slugs are statically generated from preview data.
 
-## Initial direction
-- Next.js 16 App Router frontend (`src/app`).
-- TypeScript with strict compiler options.
-- Tailwind CSS 4 for design tokens and layout.
-- Server-first rendering, with client-side islands for navigation, carousels, and animation.
-- Product/commerce integration boundary to be defined after client requirements are confirmed.
+## Trust boundaries
+- Static sample catalogue is presentation-only, not authoritative inventory.
+- Browser localStorage is not a trusted order or payment record.
+- Checkout form is a non-submitting demonstration and does not send PII.
+- Payment, inventory, customer identity and order state must be verified server-side when backend work begins.
 
-## Boundaries
-- UI components must not contain payment secrets or privileged credentials.
-- Product content must come from approved client data.
-- Checkout and payment state must be verified server-side.
-- Campaign and product media should be optimized and loaded intentionally.
-
-Update this document when the actual scaffold, data flow, backend, or deployment decisions are made.
+## Future integration boundary
+Introduce a typed server-side data access layer for catalogue, stock, cart/order and payment once the client confirms the authoritative systems and operational requirements.

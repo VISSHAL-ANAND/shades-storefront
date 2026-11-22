@@ -1,52 +1,41 @@
 # Project State
 
 ## Current stage
-Phase 1 — Foundation. P1.1 and P1.2 are committed on main. P1.2 post-commit review corrections have been applied; local revalidation is pending before moving to P2.
+The full customer-facing frontend preview has been implemented in one consolidated storefront pass. Local verification and visual review are still required.
 
-## Verified project configuration
-- GitHub repository: VISSHAL-ANAND/shades-storefront (private).
-- Default branch: main.
-- Node.js runtime: v22.20.0.
-- Package manager: pnpm 10.33.0.
-- Application: Next.js 16.4.6 (App Router), React 19.3.0, TypeScript 5.9.3, Tailwind CSS 4.3.5, @tailwindcss/postcss 4.3.5, PostCSS 8.5.33, ESLint 9.39.5.
-- P1.1 foundation commit: 1b9893a.
-- P1.2 design system and responsive shell commit: a1e4899.
+## Repository and stack
+- Repository: VISSHAL-ANAND/shades-storefront (private).
+- Branch: main.
+- Next.js 16.4.6 App Router, React 19.3.0, TypeScript 5.9.3, Tailwind CSS 4.3.5.
+- Node.js v22.20.0 and pnpm 10.33.0 are the established local environment.
 
-## P1.2 implementation
-- CSS-first design tokens are defined in src/app/globals.css using Tailwind CSS v4 @theme.
-- Provisional palette (pending client sign-off): Cream #FBF9F5, Charcoal #141413, Forest #1B3322, Beige #E8E2D8, Stone #5A5854.
-- Verified solid-color contrast ratios: Charcoal on Cream 17.53:1; Forest on Cream 12.94:1; Cream on Forest 12.94:1; Stone on Cream 6.75:1. Beige on Cream is 1.23:1 and is restricted to decorative use.
-- Serif display and system sans typography are offline-safe and do not fetch external fonts.
-- UI primitives: Container, Section, Button, Badge, IconButton, Icons.
-- Shell components: AnnouncementBar, Header, MobileNav, Footer.
-- Root layout includes a skip-to-content link and semantic main landmark.
-- Reduced-motion and global focus-visible styles are defined.
-- No product data, prices, store address, opening hours, contact details, or policies have been invented.
+## Frontend implemented
+- Editorial homepage with campaign hero, category tiles, new-arrivals grid and store information.
+- Continuous rolling product showcase; CSS loop pauses on hover, focus and active interaction, allows horizontal touch scrolling, and disables motion under prefers-reduced-motion.
+- Shop listing with category filters and sorting.
+- Static collection routes for new arrivals, clothing, accessories, shirts, tees, trousers and layers.
+- Product detail routes with image gallery, colour and size selection, quantity and add-to-bag interaction.
+- Browser-local cart with quantity updates, removal and subtotal.
+- Checkout form preview, catalogue search, editorial/about page, responsive header, mobile dialog navigation and footer.
+- Metadata for main routes and static product/collection params.
 
-## Post-commit review corrections
-- Replaced non-existent header and footer hash destinations with the only currently implemented destination, #store-info. Future category and editorial navigation will be added alongside the real sections/pages in P2 and P3.
-- Desktop primary navigation links now have a minimum 44px height.
-- IconButton small variant now enforces a 44px minimum width and height.
-- Footer muted text was adjusted to meet normal-text contrast against charcoal; footer links now have a visible cream focus outline against the dark background.
-- The homepage no longer uses a reduced-opacity Stone text color that fell below WCAG AA contrast on Cream.
-- Header keeps the cart as a non-interactive placeholder until cart behavior exists.
+## Preview-only boundaries
+- Product names, images, descriptions, prices, sizes and colours are sample content.
+- Unsplash images are temporary visual assets, not Shades product photography.
+- Cart state is stored in localStorage; no server-side order is created.
+- Checkout does not submit personal data, charge payment, reserve stock or send confirmation.
+- Shipping, taxes, delivery coverage, pickup, returns, refunds, cancellations, GST, customer accounts, address, hours and contact details remain unconfirmed.
+- Razorpay remains a proposed provider only. No live payment integration exists.
+- No backend, inventory API, admin dashboard, POS or deployment has been implemented.
 
-## Previously reported local verification
-The P1.2 implementation was reported by the local development workflow as passing:
-- Horizontal overflow checks at 390px, 768px, 1024px, and 1440px.
-- Mobile dialog open, Escape dismissal, backdrop dismissal, and body scroll-lock restoration.
-- Lint, typecheck, production build, and git diff --check.
+## Verification status
+- Previous foundation checks passed locally at commit 67222d2: lint, typecheck and production build.
+- The full storefront changes have not been run locally by the assistant. The user must pull the latest main and rerun lint, typecheck and build.
+- Browser checks, image loading, touch scrolling, dialog behavior, accessibility and performance still require local visual verification.
 
-These results predate the post-commit corrections above and must be rerun locally. They are not claimed as verification of the corrected commit.
-
-## Pending local verification
-- [ ] pnpm install --frozen-lockfile (if dependencies need reinstalling).
-- [ ] pnpm lint.
-- [ ] pnpm typecheck.
-- [ ] pnpm build.
-- [ ] Responsive overflow and 44px touch-target checks at 390px, 768px, 1024px, and 1440px.
-- [ ] Keyboard focus visibility, reduced-motion behavior, and mobile dialog interaction.
-- [ ] Confirm clean Git status after pulling the correction commit.
-
-## Next action
-Complete the local verification checklist above. Only then begin P2 (Cinematic homepage and rolling clothing showcase), using approved client media and real content when available.
+## Next actions
+1. Pull latest main and run lint, typecheck and production build.
+2. Start the app and inspect desktop and mobile layouts.
+3. Test showcase motion, touch scrolling, reduced-motion, product selection, cart persistence, search and checkout preview.
+4. Replace sample content and imagery only after the client supplies approved assets and catalogue data.
+5. Confirm operational and payment requirements before backend integration.

@@ -1,52 +1,28 @@
 # Decisions
 
 ## D-001 — Private repository
-- Status: Approved.
-- Repository: VISSHAL-ANAND/shades-storefront.
-- Default branch: main.
+- Status: Approved. Repository VISSHAL-ANAND/shades-storefront; branch main.
 
 ## D-002 — Guided implementation
-- Status: Approved.
-- Work in reviewable milestones; inspect and test before moving forward.
+- Status: Updated by user request. Build the complete customer-facing frontend in one consolidated implementation effort, then verify as a whole. Keep production integrations separate where client requirements are unknown.
 
 ## D-003 — Visual direction
-- Status: Approved direction.
-- Cinematic editorial fashion, using the supplied CANALI reference as inspiration while preserving Shades' identity.
+- Status: Approved direction. Cinematic editorial fashion inspired by supplied CANALI reference while preserving Shades' own identity.
 
 ## D-004 — Storefront scope
-- Status: Approved initial scope.
-- Customer-facing storefront. Admin dashboard and advanced operational integrations are separate unless later agreed.
+- Status: Approved. Responsive storefront, campaign hero, rolling showcase, categories, product listing/detail, bag, checkout frontend, search, editorial page and store information. Admin dashboard, POS and advanced operations are separate unless approved.
 
 ## D-005 — Rolling clothing display
-- Status: Required.
-- Continuous horizontal showcase with seamless looping, product interaction, mobile touch support, and reduced-motion behavior. Exact interaction details will be prototyped and reviewed.
+- Status: Required and implemented in preview. Continuous horizontal CSS loop, product links, hover/focus/active pause, horizontal touch scrolling and reduced-motion static fallback. Browser verification remains pending.
 
-## D-006 — Foundation scaffold stack
-- Status: Approved (P1.1).
-- Frontend framework: Next.js 16.4.6 (App Router) with React 19.3.0.
-- Language: TypeScript 5.9.3 (strict mode enabled).
-- Styling: Tailwind CSS 4.3.5 integrated via @tailwindcss/postcss 4.3.5 and PostCSS 8.5.33.
-- Linter: ESLint 9.39.5 with eslint-config-next.
-- Package Manager: pnpm 10.33.0.
-- Layout: src/app/ directory layout.
+## D-006 — Frontend stack
+- Status: Approved. Next.js 16.4.6, React 19.3.0, TypeScript 5.9.3, Tailwind CSS 4.3.5, pnpm 10.33.0. Production build uses webpack.
 
-## D-007 — Build engine and typography baseline
-- Status: Approved (P1.1).
-- Production build uses next build --webpack for the established Windows workflow.
-- Typography baseline uses system font fallbacks for reliable offline builds.
-- GSAP and other animation libraries are deferred to P2 until the motion prototype is reviewed.
+## D-007 — Preview catalogue and media
+- Status: Temporary implementation. Sample product data and Unsplash stock imagery are used to complete the visual frontend before client assets arrive. These are not real Shades products or product photography and must be replaced before launch.
 
-## D-008 — Design system and accessible responsive shell
-- Status: Implemented and committed in a1e4899; post-commit review corrections applied, local revalidation pending.
-- Provisional tokens are defined in src/app/globals.css; client brand approval is still pending.
-- Solid-color contrast: Charcoal on Cream 17.53:1, Forest on Cream 12.94:1, Stone on Cream 6.75:1. Beige on Cream is 1.23:1 and is decorative only.
-- Typography uses offline-safe serif and system sans stacks; no external font requests are required.
-- Header and mobile drawer share one navigation data source. Until category/editorial sections exist, the only active navigation destination is #store-info.
-- Footer contains only a real Store Information link; future policy, care, collection, and appointment links must be added only when their destinations are implemented and approved.
-- Native dialog provides modal behavior; local revalidation must confirm Escape, backdrop dismissal, focus behavior, and scroll-lock restoration.
-- Visible navigation links enforce a 44px minimum height; IconButton variants enforce a 44px minimum target.
-- Footer muted text and focus indicators were corrected for the dark background. Reduced-opacity Stone text on Cream was removed from the homepage.
-- No invented address, hours, contact details, product data, prices, or policies.
+## D-008 — Cart and checkout preview
+- Status: Implemented as frontend-only. Cart persists in localStorage. Checkout form is a local demonstration and explicitly does not create orders, process payment or transmit personal data.
 
-## Pending
-Backend/database, payment provider/account, inventory source/sync, delivery/pickup, authentication, hosting, and domain.
+## D-009 — Business facts and production integration
+- Status: Deferred. Do not invent store address, hours, contact, prices, stock, delivery, return or tax policies. Payment provider, backend, inventory source, shipping and hosting require client confirmation.

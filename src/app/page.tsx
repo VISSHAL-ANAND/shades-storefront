@@ -1,120 +1,23 @@
-import React from "react";
-import { Container } from "@/components/ui/Container";
-import { Section } from "@/components/ui/Section";
-import { Badge } from "@/components/ui/Badge";
-import { MapPinIcon } from "@/components/ui/Icons";
+import Image from "next/image";
+import Link from "next/link";
+import {Container} from "@/components/ui/Container";
+import {ProductCard,RollingShowcase,StoreNotice} from "@/components/storefront/Storefront";
+import {CATEGORIES,PRODUCTS} from "@/lib/products";
 
-export default function Home() {
-  return (
-    <>
-      <Section spacing="lg" className="border-b border-shades-beige/60">
-        <Container size="prose" className="space-y-6 text-center">
-          <div className="flex items-center justify-center gap-2.5">
-            <Badge variant="outline">Milestone P1.2</Badge>
-            <Badge variant="accent">Design System &amp; Shell</Badge>
-          </div>
-
-          <h1 className="font-serif text-3xl font-normal leading-[1.15] tracking-[0.06em] text-shades-charcoal sm:text-4xl md:text-5xl lg:text-6xl">
-            Curated Menswear for Coimbatore
-          </h1>
-
-          <p className="mx-auto max-w-xl font-sans text-sm leading-relaxed text-shades-stone sm:text-base">
-            A cinematic editorial fashion storefront designed with deliberate restraint, warm neutral tones, and responsive architecture.
-          </p>
-
-          <p className="mx-auto max-w-md font-sans text-xs italic text-shades-stone">
-            Collections and campaign pages are under development and will appear in a future milestone.
-          </p>
-        </Container>
-      </Section>
-
-      <Section spacing="md" className="border-b border-shades-beige/60 bg-shades-white/70">
-        <Container size="default">
-          <div className="mx-auto mb-12 max-w-2xl space-y-3 text-center">
-            <Badge variant="neutral">Tokens &amp; Architecture</Badge>
-            <h2 className="font-serif text-2xl font-normal tracking-[0.08em] text-shades-charcoal sm:text-3xl">
-              Design System Palette
-            </h2>
-            <p className="font-sans text-xs text-shades-stone sm:text-sm">
-              Provisional color tokens pending client brand approval. Engineered for WCAG AA/AAA contrast.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-            <div className="space-y-2 border border-shades-beige bg-shades-cream p-4">
-              <div className="h-12 w-full border border-shades-beige/80 bg-shades-cream" />
-              <div className="space-y-0.5">
-                <p className="font-sans text-xs font-medium uppercase tracking-[0.1em] text-shades-charcoal">Cream</p>
-                <p className="font-mono text-[11px] text-shades-stone">#FBF9F5</p>
-                <p className="pt-1 font-sans text-[10px] text-shades-stone">Canvas / Background</p>
-              </div>
-            </div>
-
-            <div className="space-y-2 border border-shades-beige bg-shades-cream p-4">
-              <div className="h-12 w-full bg-shades-charcoal" />
-              <div className="space-y-0.5">
-                <p className="font-sans text-xs font-medium uppercase tracking-[0.1em] text-shades-charcoal">Charcoal</p>
-                <p className="font-mono text-[11px] text-shades-stone">#141413</p>
-                <p className="pt-1 font-sans text-[10px] text-shades-stone">Primary Text (17.53:1)</p>
-              </div>
-            </div>
-
-            <div className="space-y-2 border border-shades-beige bg-shades-cream p-4">
-              <div className="h-12 w-full bg-shades-forest" />
-              <div className="space-y-0.5">
-                <p className="font-sans text-xs font-medium uppercase tracking-[0.1em] text-shades-charcoal">Forest</p>
-                <p className="font-mono text-[11px] text-shades-stone">#1B3322</p>
-                <p className="pt-1 font-sans text-[10px] text-shades-stone">Brand Accent (12.94:1)</p>
-              </div>
-            </div>
-
-            <div className="space-y-2 border border-shades-beige bg-shades-cream p-4">
-              <div className="h-12 w-full bg-shades-beige" />
-              <div className="space-y-0.5">
-                <p className="font-sans text-xs font-medium uppercase tracking-[0.1em] text-shades-charcoal">Warm Beige</p>
-                <p className="font-mono text-[11px] text-shades-stone">#E8E2D8</p>
-                <p className="pt-1 font-sans text-[10px] text-shades-stone">Borders &amp; Dividers only</p>
-              </div>
-            </div>
-
-            <div className="space-y-2 border border-shades-beige bg-shades-cream p-4">
-              <div className="h-12 w-full bg-shades-stone" />
-              <div className="space-y-0.5">
-                <p className="font-sans text-xs font-medium uppercase tracking-[0.1em] text-shades-charcoal">Stone</p>
-                <p className="font-mono text-[11px] text-shades-stone">#5A5854</p>
-                <p className="pt-1 font-sans text-[10px] text-shades-stone">Muted Labels (6.75:1)</p>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </Section>
-
-      <Section spacing="md">
-        <Container size="default">
-          <div className="flex flex-col items-start justify-between gap-8 border border-shades-beige bg-shades-white p-8 sm:p-12 md:flex-row md:items-center lg:p-16">
-            <div className="max-w-xl space-y-3">
-              <div className="inline-flex items-center gap-1.5 font-sans text-xs font-medium uppercase tracking-[0.16em] text-shades-forest">
-                <MapPinIcon className="h-4 w-4" />
-                <span>Physical Studio</span>
-              </div>
-              <h2 className="font-serif text-2xl font-normal tracking-[0.06em] text-shades-charcoal sm:text-3xl">
-                Visit Shades in Coimbatore
-              </h2>
-              <p className="font-sans text-xs leading-relaxed text-shades-stone sm:text-sm">
-                Connect your digital exploration with our physical boutique experience. Address and confirmed opening hours will appear once client verification is complete.
-              </p>
-            </div>
-
-            <a
-              href="#store-info"
-              aria-label="Jump to store information"
-              className="inline-flex min-h-[44px] shrink-0 items-center gap-2 px-1 font-sans text-xs uppercase tracking-[0.16em] text-shades-forest transition-colors hover:text-shades-charcoal"
-            >
-              Store Information ↓
-            </a>
-          </div>
-        </Container>
-      </Section>
-    </>
-  );
+export default function Home(){
+ return <>
+  <section className="relative isolate min-h-[640px] overflow-hidden bg-[#34342f] text-shades-cream sm:min-h-[720px] lg:min-h-[min(820px,calc(100svh-110px))]">
+   <Image src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=2200&q=90" alt="Menswear editorial campaign preview" fill priority sizes="100vw" className="absolute inset-0 -z-20 object-cover object-center"/>
+   <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/75 via-black/35 to-black/10"/><div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/40 via-transparent to-black/10"/>
+   <Container className="flex min-h-[640px] flex-col justify-end pb-16 pt-24 sm:min-h-[720px] sm:pb-24 lg:min-h-[min(820px,calc(100svh-110px))]">
+    <div className="max-w-2xl"><p className="text-[9px] uppercase tracking-[.28em] text-white/75">Shades Coimbatore · The new point of view</p><h1 className="mt-6 font-serif text-5xl font-normal leading-[.98] tracking-wide sm:text-7xl lg:text-[88px]">Wear your<br/><em className="font-normal">own rhythm.</em></h1><p className="mt-7 max-w-md text-sm leading-7 text-white/80 sm:text-base">A considered edit of contemporary menswear and everyday essentials. Find the pieces that feel like you.</p><div className="mt-9 flex flex-wrap gap-3"><Link href="/shop" className="inline-flex min-h-12 items-center bg-shades-cream px-7 text-[10px] font-medium uppercase tracking-[.18em] text-shades-charcoal hover:bg-white">Explore the collection ↗</Link><Link href="/about" className="inline-flex min-h-12 items-center border border-white/65 px-7 text-[10px] uppercase tracking-[.18em] text-white hover:bg-white/10">The Shades edit</Link></div></div>
+    <p className="mt-12 text-[9px] uppercase tracking-[.2em] text-white/55">Campaign image is a temporary editorial placeholder</p>
+   </Container><div className="absolute bottom-8 right-6 hidden text-[9px] uppercase tracking-[.2em] text-white/65 lg:block">01 — The collection</div>
+  </section>
+  <section className="py-14 sm:py-20"><Container><div className="mb-9 flex items-end justify-between gap-5"><div><p className="text-[9px] uppercase tracking-[.22em] text-shades-stone">Find your fit</p><h2 className="mt-3 font-serif text-3xl sm:text-4xl">Shop by category</h2></div><Link href="/shop" className="hidden min-h-11 items-center text-[10px] uppercase tracking-[.16em] underline underline-offset-4 sm:inline-flex">All pieces ↗</Link></div><div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">{CATEGORIES.map((c,i)=><Link key={c.slug} href={"/collections/"+c.slug} className={"group "+(i===0?"col-span-2 sm:col-span-1":"")}><div className="relative aspect-[4/5] overflow-hidden bg-[#e9e5dd]"><Image src={c.image} alt={c.name+" category preview"} fill sizes="(max-width:640px) 48vw,20vw" className="object-cover transition-transform duration-700 group-hover:scale-105"/><div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"/><div className="absolute bottom-4 left-4 right-4 text-white"><h3 className="font-serif text-xl sm:text-2xl">{c.name}</h3><p className="mt-1 text-[9px] uppercase tracking-[.14em] text-white/75">{c.description}</p></div></div></Link>)}</div></Container></section>
+  <RollingShowcase/>
+  <section className="py-16 sm:py-24"><Container><div className="mb-9 flex items-end justify-between gap-5"><div><p className="text-[9px] uppercase tracking-[.22em] text-shades-stone">Fresh perspective</p><h2 className="mt-3 font-serif text-3xl sm:text-4xl">New in the edit</h2><p className="mt-3 max-w-md text-xs leading-6 text-shades-stone">A preview selection of pieces for the everyday wardrobe.</p></div><Link href="/collections/new-arrivals" className="hidden min-h-11 items-center text-[10px] uppercase tracking-[.16em] underline underline-offset-4 sm:inline-flex">View all ↗</Link></div><div className="grid grid-cols-2 gap-x-4 gap-y-9 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4">{PRODUCTS.filter(p=>p.isNew).map(p=><ProductCard key={p.id} product={p}/>)}</div></Container></section>
+  <section className="grid min-h-[540px] bg-[#d9d4cb] lg:grid-cols-2"><div className="relative min-h-[380px] overflow-hidden"><Image src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1400&q=85" alt="Editorial fashion styling preview" fill sizes="(max-width:1024px) 100vw,50vw" className="object-cover"/></div><div className="flex flex-col justify-center px-6 py-16 sm:px-12 lg:px-20"><p className="text-[9px] uppercase tracking-[.22em] text-shades-stone">The Shades point of view</p><h2 className="mt-5 max-w-lg font-serif text-4xl leading-tight sm:text-5xl">Less noise.<br/><em>More character.</em></h2><p className="mt-6 max-w-md text-sm leading-7 text-shades-stone">Build a wardrobe around pieces you reach for. Explore relaxed essentials, considered layers and the details that make a look your own.</p><Link href="/about" className="mt-8 inline-flex min-h-11 w-fit items-center border-b border-shades-charcoal text-[10px] uppercase tracking-[.17em]">Discover the edit ↗</Link></div></section>
+  <StoreNotice/><section className="py-12 text-center"><p className="text-[9px] uppercase tracking-[.2em] text-shades-stone">Preview catalogue</p><p className="mx-auto mt-3 max-w-2xl px-5 text-xs leading-6 text-shades-stone">This storefront uses temporary editorial imagery and sample product names, prices and variants. The final catalogue, inventory, policies and contact details will replace these placeholders.</p></section>
+ </>;
 }

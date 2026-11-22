@@ -1,20 +1,8 @@
-export interface NavItem {
-  label: string;
-  href: string;
-}
-
-export const MAIN_NAV_ITEMS: NavItem[] = [
-  { label: "Visit Store", href: "#store-info" },
-];
-
-export interface FooterSection {
-  title: string;
-  items: NavItem[];
-}
-
-export const FOOTER_NAV_SECTIONS: FooterSection[] = [
-  {
-    title: "Visit Shades",
-    items: [{ label: "Store Information", href: "#store-info" }],
-  },
+import type {NavItem} from "@/lib/types";
+export const MAIN_NAV_ITEMS:NavItem[]=[
+ {label:"Shop all",href:"/shop"},
+ {label:"New arrivals",href:"/collections/new-arrivals"},
+ {label:"Clothing",href:"/collections/clothing"},
+ {label:"Accessories",href:"/collections/accessories"},
+ {label:"Our story",href:"/about"}
 ];

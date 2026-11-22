@@ -1,15 +1,21 @@
 # Testing Strategy
 
-## Foundation milestone
-Run and record dependency installation, development server startup, lint, typecheck, production build, Git status, and secret-file checks.
+## Foundation
+The foundation commit 67222d2 was locally reported by the user as passing pnpm lint, pnpm typecheck and pnpm build.
 
-## Storefront milestones
-- Unit tests for pure utilities and data transformations.
-- Component tests for selectors, cart controls, and navigation where practical.
-- End-to-end tests for product discovery and checkout.
-- Responsive checks across mobile, tablet, and desktop.
-- Keyboard navigation and reduced-motion checks.
-- Accessibility checks for contrast, labels, focus, and semantics.
-- Performance checks for media loading, layout shift, and animation smoothness.
+## Full storefront preview
+Required local checks:
+- pnpm lint
+- pnpm typecheck
+- pnpm build
+- Direct route checks for /, /shop, all /collections/* routes, /product/*, /cart, /checkout, /search and /about.
+- Responsive checks at 390px, 768px, 1024px and 1440px.
+- No horizontal overflow; minimum 44px interactive targets where applicable.
+- Keyboard navigation, dialog focus behavior, visible focus and reduced-motion.
+- Rolling showcase loop, pause on hover/focus/active, touch swipe and reduced-motion fallback.
+- Product variant selection, quantity, add-to-bag, cart persistence, quantity update, remove and subtotal.
+- Search matching and empty state.
+- Checkout preview validation and explicit no-order/no-payment notice.
+- Remote image loading, layout stability and mobile performance.
 
-Never report a test as passing unless it was executed and the output inspected.
+Never claim a test passed unless the command or interaction was executed and the output inspected.

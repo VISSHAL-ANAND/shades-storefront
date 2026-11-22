@@ -1,32 +1,29 @@
 # Shades Storefront
 
-Private project repository for the Shades Coimbatore cinematic fashion storefront.
+Private repository for the Shades Coimbatore customer-facing fashion storefront.
 
-## Current status
-- Stage: Phase 1 — Foundation; P1.2 (Design System and Responsive Shell) is committed. Post-commit review corrections are applied; local revalidation is pending.
-- Development environment: Local Windows PowerShell workflow with GitHub-backed source review. Google Antigravity is optional.
-- Workflow: Guided, milestone-based; changes are made on the agreed main branch.
-- Implementation stack: Next.js 16.4.6 (App Router), React 19.3.0, TypeScript 5.9.3, Tailwind CSS 4.3.5 via @tailwindcss/postcss 4.3.5, PostCSS 8.5.33, ESLint 9.39.5.
-- Package manager: pnpm 10.33.0 (Node.js v22.20.0).
+## Current implementation
+- Cinematic editorial homepage and responsive navigation.
+- Product category browsing, new-arrival and category collections.
+- Continuous rolling clothing showcase with hover/focus pause, touch scrolling and reduced-motion fallback.
+- Product detail pages with size, colour and quantity selection.
+- Local browser-persisted shopping bag.
+- Checkout form preview, search and editorial brand page.
+- Responsive footer and store-information placeholder.
 
-## Available scripts
-- pnpm dev: Starts Next.js development server
-- pnpm build: Runs production build (next build --webpack)
-- pnpm start: Starts production server
-- pnpm lint: Runs ESLint
-- pnpm typecheck: Runs TypeScript compiler typecheck (tsc --noEmit)
+## Preview limitations
+The catalogue uses temporary Unsplash editorial images and sample product names, descriptions, prices and variants. Replace these with client-approved product photography and catalogue data before launch. The cart is browser-local only. Checkout is a frontend demonstration: it does not create an order, collect payment, calculate shipping/tax or send customer data to a server.
 
-## Product direction
-Build a premium cinematic storefront for Shades Coimbatore. Use the supplied CANALI reference as visual inspiration while preserving Shades' own brand identity.
+No real store address, operating hours, contact details, delivery/return policies, stock or payment provider has been invented. Those must be supplied and integrated.
 
-The current scope is the customer-facing storefront. A custom admin dashboard, POS integration, advanced inventory synchronization, loyalty systems, and complex logistics integrations are separate scope unless approved.
+## Stack
+Next.js 16.4.6 App Router, React 19.3.0, TypeScript 5.9.3, Tailwind CSS 4.3.5 and pnpm 10.33.0.
 
-## Key experience requirements
-- Cinematic campaign hero using approved brand media.
-- Continuous horizontal rolling clothing showcase with seamless looping.
-- Product discovery, categories, and product detail pages.
-- Variants, cart, checkout, online payments (provider and flow to be finalized).
-- Store information, directions, and WhatsApp contact.
-- Responsive, performant, accessible experience.
+## Local development
+Run pnpm install --frozen-lockfile, then pnpm dev. Open http://localhost:3000.
 
-Read AGENTS.md, docs/STATE.md, and docs/TASKS.md before making changes.
+## Validation
+Run pnpm lint, pnpm typecheck and pnpm build.
+
+## Engineering notes
+Work directly on main without force-pushing. Read AGENTS.md and project docs before substantial changes. Never commit secrets or real customer data. Use client-approved assets and business rules for production.

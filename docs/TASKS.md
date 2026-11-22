@@ -1,45 +1,37 @@
 # Tasks
 
-## P1.1 Repository and environment foundation — Completed & Committed (1b9893a)
-
-### Completed
-- [x] Inspect Git status, branch, repository root, and installed Node.js/package-manager versions.
-- [x] Confirm repository contents without overwriting existing work.
-- [x] Scaffold Next.js App Router with TypeScript.
-- [x] Configure Tailwind CSS 4 using the official PostCSS integration.
-- [x] Add foundation dependencies and scripts.
-- [x] Validate .gitignore and .env.example.
-- [x] Run install, lint, typecheck, production build, and development-server checks.
-- [x] Update README and project documentation.
-
-## P1.2 Design system and responsive shell — Committed (a1e4899); review corrections applied
-
-### Implemented
-- [x] Define provisional editorial design tokens in Tailwind v4 @theme.
-- [x] Configure offline-safe serif and sans typography stacks.
-- [x] Calculate contrast for the solid brand palette.
-- [x] Implement Container, Section, Button, Badge, IconButton, and icon primitives.
-- [x] Implement AnnouncementBar, Header, MobileNav, and Footer.
-- [x] Implement native dialog navigation with Escape and backdrop dismissal and body scroll locking.
-- [x] Implement skip-to-content link and semantic root layout.
-- [x] Maintain placeholders for unconfirmed store information.
-- [x] Add reduced-motion and focus-visible styling.
-- [x] Remove dead navigation destinations until their target sections/pages exist.
-- [x] Enforce 44px minimum height for visible navigation links and 44px minimum dimensions for icon buttons.
-
-### Revalidation required after review corrections
+## Full customer-facing frontend preview — Implemented; verification pending
+- [x] Replace the foundation-only homepage with a cinematic editorial storefront.
+- [x] Add temporary campaign and product imagery with explicit preview notices.
+- [x] Add category tiles, new arrivals and product showcase.
+- [x] Implement continuous rolling clothing display with hover/focus pause, touch scrolling and reduced-motion fallback.
+- [x] Implement shop listing, category collections and sorting.
+- [x] Implement product detail pages with size, colour, quantity and add-to-bag.
+- [x] Implement local persistent cart, quantity updates, removal and subtotal.
+- [x] Implement checkout form preview without creating a real order or processing payment.
+- [x] Implement catalogue search and editorial/about page.
+- [x] Connect navigation, footer and route metadata.
+- [x] Keep unconfirmed business details and operational policies as explicit placeholders.
 - [ ] Run pnpm lint.
 - [ ] Run pnpm typecheck.
 - [ ] Run pnpm build.
-- [ ] Verify responsive overflow at 390px, 768px, 1024px, and 1440px.
-- [ ] Verify visible interactive targets are at least 44px high and icon controls are at least 44px square.
-- [ ] Verify keyboard focus contrast, reduced-motion behavior, dialog Escape/backdrop behavior, and scroll-lock restoration.
-- [ ] Confirm the working tree is clean after pulling the latest main.
+- [ ] Check all routes and responsive layouts at 390px, 768px, 1024px and 1440px.
+- [ ] Verify mobile navigation, keyboard operation, touch targets and focus visibility.
+- [ ] Verify rolling showcase loop, pause behavior, touch interaction and reduced-motion fallback.
+- [ ] Verify product variants, add-to-bag, cart persistence, quantity/removal, search and checkout preview.
+- [ ] Inspect external image loading and performance.
 
-## Later milestones
-- P2 Cinematic homepage and rolling clothing showcase.
-- P3 Product discovery and product detail experience.
-- P4 Cart and checkout.
-- P5 QA, accessibility, performance, and launch readiness.
+## Production integration — Blocked on client inputs
+- [ ] Receive approved brand assets, campaign media and product photography.
+- [ ] Receive the authoritative product catalogue, descriptions, SKU, prices, sizes, colours and stock.
+- [ ] Confirm shipping geography, charges, local delivery and pickup.
+- [ ] Confirm returns, refunds, cancellations, exchanges and GST invoice requirements.
+- [ ] Confirm inventory source and update mechanism.
+- [ ] Confirm payment provider/account ownership and settlement.
+- [ ] Implement secure server-side order creation, payment verification and webhook handling.
+- [ ] Implement order confirmation and customer communication.
+- [ ] Confirm store address, opening hours, contact and WhatsApp details.
+- [ ] Decide hosting, domain, monitoring and maintenance.
 
-Do not begin later milestones until P1.2 revalidation passes.
+## Explicitly separate scope unless approved
+Admin dashboard, POS, advanced inventory synchronization, loyalty and complex logistics integrations.

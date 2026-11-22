@@ -1,78 +1,13 @@
 "use client";
-
-import React, { useState } from "react";
 import Link from "next/link";
-import { MAIN_NAV_ITEMS } from "@/lib/navigation";
-import { Container } from "@/components/ui/Container";
-import { IconButton } from "@/components/ui/IconButton";
-import { MenuIcon, BagIcon } from "@/components/ui/Icons";
-import { MobileNav } from "@/components/layout/MobileNav";
-
-export function Header() {
-  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
-
-  return (
-    <>
-      <header className="sticky top-0 z-40 border-b border-shades-beige/60 bg-shades-cream/95 backdrop-blur-md">
-        <Container className="flex h-16 items-center justify-between lg:h-20">
-          <div className="flex flex-1 items-center">
-            <IconButton
-              onClick={() => setIsMobileNavOpen(true)}
-              aria-label="Open navigation menu"
-              className=" -ml-2 lg:hidden"
-              aria-expanded={isMobileNavOpen}
-            >
-              <MenuIcon className="h-5 w-5" />
-            </IconButton>
-
-            <nav
-              aria-label="Primary navigation"
-              className="hidden items-center gap-6 lg:flex"
-            >
-              {MAIN_NAV_ITEMS.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="relative inline-flex min-h-[44px] items-center py-1 text-xs font-medium uppercase tracking-[0.16em] text-shades-charcoal transition-colors hover:text-shades-forest"
-                >
-                  {item.label}
-                </a>
-              ))}
-            </nav>
-          </div>
-
-          <div className="flex shrink-0 flex-col items-center justify-center px-4 text-center">
-            <Link
-              href="/"
-              className="group inline-flex min-h-[44px] flex-col items-center justify-center"
-            >
-              <span className="font-serif text-xl font-normal uppercase tracking-[0.26em] text-shades-charcoal transition-colors group-hover:text-shades-forest sm:text-2xl lg:text-3xl">
-                SHADES
-              </span>
-              <span className="-mt-0.5 font-sans text-[8px] uppercase tracking-[0.32em] text-shades-stone sm:-mt-1 sm:text-[9px]">
-                Coimbatore
-              </span>
-            </Link>
-          </div>
-
-          <div className="flex flex-1 items-center justify-end space-x-1 sm:space-x-2">
-            <span
-              aria-label="Shopping bag — cart not yet available"
-              title="Shopping bag (coming soon)"
-              className="inline-flex min-h-[44px] select-none items-center gap-1.5 px-2.5 text-xs uppercase tracking-[0.14em] text-shades-charcoal"
-            >
-              <BagIcon className="h-4 w-4" />
-              <span className="hidden sm:inline">Bag</span>
-              <span className="text-[11px] font-normal text-shades-stone">(0)</span>
-            </span>
-          </div>
-        </Container>
-      </header>
-
-      <MobileNav
-        isOpen={isMobileNavOpen}
-        onClose={() => setIsMobileNavOpen(false)}
-      />
-    </>
-  );
+import {useState} from "react";
+import {MAIN_NAV_ITEMS} from "@/lib/navigation";
+import {Container} from "@/components/ui/Container";
+import {IconButton} from "@/components/ui/IconButton";
+import {MenuIcon,BagIcon,SearchIcon} from "@/components/ui/Icons";
+import {MobileNav} from "@/components/layout/MobileNav";
+import {useCart} from "@/context/CartContext";
+export function Header(){
+ const [open,setOpen]=useState(false);const {count}=useCart();
+ return <><header className="sticky top-0 z-40 border-b border-shades-beige/70 bg-shades-cream/95 backdrop-blur-md"><Container className="flex h-16 items-center justify-between lg:h-20"><div className="flex flex-1 items-center"><IconButton onClick={()=>setOpen(true)} aria-label="Open navigation menu" className="-ml-2 lg:hidden" aria-expanded={open}><MenuIcon className="h-5 w-5"/></IconButton><nav aria-label="Primary navigation" className="hidden items-center gap-5 lg:flex xl:gap-7">{MAIN_NAV_ITEMS.map(item=><Link key={item.label} href={item.href} className="inline-flex min-h-11 items-center text-[10px] font-medium uppercase tracking-[.15em] text-shades-charcoal transition-colors hover:text-shades-forest">{item.label}</Link>)}</nav></div><Link href="/" aria-label="Shades Coimbatore home" className="group flex min-h-11 shrink-0 flex-col items-center justify-center px-3 text-center"><span className="font-serif text-xl uppercase tracking-[.26em] sm:text-2xl lg:text-3xl">SHADES</span><span className="-mt-0.5 text-[8px] uppercase tracking-[.32em] text-shades-stone sm:text-[9px]">Coimbatore</span></Link><div className="flex flex-1 items-center justify-end gap-1 sm:gap-2"><Link href="/search" aria-label="Search products" className="inline-flex h-11 w-11 items-center justify-center hover:text-shades-forest"><SearchIcon className="h-5 w-5"/></Link><Link href="/cart" aria-label={"Shopping bag with "+count+" items"} className="inline-flex min-h-11 items-center gap-2 px-2 text-[10px] uppercase tracking-[.14em] hover:text-shades-forest"><BagIcon className="h-4 w-4"/><span className="hidden sm:inline">Bag</span><span className="tabular-nums">({count})</span></Link></div></Container></header><MobileNav isOpen={open} onClose={()=>setOpen(false)}/></>;
 }
