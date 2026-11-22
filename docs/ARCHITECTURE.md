@@ -1,12 +1,12 @@
 # Architecture
 
 ## Status
-Architecture is provisional. The repository bootstrap is present; application runtime has not been initialized.
+Frontend foundation runtime initialized (P1.1 complete). Customer-facing App Router application in place.
 
 ## Initial direction
-- Next.js App Router frontend.
-- TypeScript.
-- Tailwind CSS for design tokens and layout.
+- Next.js 16 App Router frontend (`src/app`).
+- TypeScript with strict compiler options.
+- Tailwind CSS 4 for design tokens and layout.
 - Server-first rendering, with client-side islands for navigation, carousels, and animation.
 - Product/commerce integration boundary to be defined after client requirements are confirmed.
 

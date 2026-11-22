@@ -3,10 +3,18 @@
 Private project repository for the Shades Coimbatore cinematic fashion storefront.
 
 ## Current status
-- Stage: Phase 1 — Foundation; repository bootstrap only.
+- Stage: Phase 1 — Foundation; task P1.1 corrected and verified (pending review before commit).
 - Development environment: Google Antigravity.
 - Workflow: guided, milestone-based.
-- Current implementation status: application scaffold not yet initialized.
+- Implementation stack: Next.js 16.4.6 (App Router), React 19.3.0, TypeScript 5.9.3, Tailwind CSS 4.3.5 via `@tailwindcss/postcss` 4.3.5, PostCSS 8.5.33, ESLint 9.39.5.
+- Package manager: pnpm 10.33.0 (Node.js v22.20.0).
+
+## Available scripts
+- `pnpm dev`: Starts Next.js development server
+- `pnpm build`: Runs production build (`next build --webpack`)
+- `pnpm start`: Starts production server
+- `pnpm lint`: Runs ESLint
+- `pnpm typecheck`: Runs TypeScript compiler typecheck (`tsc --noEmit`)
 
 ## Product direction
 Build a premium cinematic storefront for Shades Coimbatore. Use the supplied CANALI reference as visual inspiration while preserving Shades' own brand identity.
