@@ -9,11 +9,22 @@ export function CartProvider({children}:{children:ReactNode}){
  const [lines,setLines]=useState<CartLine[]>([]);
  const [hydrated,setHydrated]=useState(false);
  useEffect(()=>{
-  try{const raw=localStorage.getItem(KEY);if(raw){const parsed:unknown=JSON.parse(raw);if(Array.isArray(parsed)){setLines(parsed.filter((x):x is CartLine=>typeof x?.productId==="string"&&typeof x?.size==="string"&&typeof x?.color==="string"&&Number.isInteger(x?.quantity)&&x.quantity>0&&PRODUCTS.some(p=>p.id===x.productId)));}}}
-  catch{localStorage.removeItem(KEY);}
+  try{
+   const raw=window.localStorage.getItem(KEY);
+   if(raw){
+    const parsed:unknown=JSON.parse(raw);
+    if(Array.isArray(parsed)){
+     setLines(parsed.filter((x):x is CartLine=>typeof x?.productId==="string"&&typeof x?.size==="string"&&typeof x?.color==="string"&&Number.isInteger(x?.quantity)&&x.quantity>0&&PRODUCTS.some(p=>p.id===x.productId)));
+    }
+   }
+  }catch{/* Storage can be unavailable in private or restricted browser contexts. */}
   setHydrated(true);
  },[]);
- useEffect(()=>{if(hydrated)localStorage.setItem(KEY,JSON.stringify(lines));},[hydrated,lines]);
+ useEffect(()=>{
+  if(!hydrated)return;
+  try{window.localStorage.setItem(KEY,JSON.stringify(lines));}
+  catch{/* The in-memory bag remains usable when browser storage is unavailable. */}
+ },[hydrated,lines]);
  const value=useMemo<CartValue>(()=>{
   const count=lines.reduce((n,line)=>n+line.quantity,0);
   const subtotal=lines.reduce((n,line)=>n+(PRODUCTS.find(p=>p.id===line.productId)?.price??0)*line.quantity,0);

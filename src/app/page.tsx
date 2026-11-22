@@ -3,13 +3,12 @@ import Link from "next/link";
 import {Container} from "@/components/ui/Container";
 import {ProductCard,RollingShowcase,StoreNotice} from "@/components/storefront/Storefront";
 import {CATEGORIES,PRODUCTS} from "@/lib/products";
-
 export default function Home(){
  return <>
-  <section className="relative isolate min-h-[640px] overflow-hidden bg-[#34342f] text-shades-cream sm:min-h-[720px] lg:min-h-[min(820px,calc(100svh-110px))]">
+  <section className="relative isolate min-h-[640px] overflow-hidden bg-[#34342f] text-shades-cream sm:min-h-[720px] lg:min-h-[min(820px,80svh)]">
    <Image src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=2200&q=90" alt="Menswear editorial campaign preview" fill priority sizes="100vw" className="absolute inset-0 -z-20 object-cover object-center"/>
    <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/75 via-black/35 to-black/10"/><div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/40 via-transparent to-black/10"/>
-   <Container className="flex min-h-[640px] flex-col justify-end pb-16 pt-24 sm:min-h-[720px] sm:pb-24 lg:min-h-[min(820px,calc(100svh-110px))]">
+   <Container className="flex min-h-[640px] flex-col justify-end pb-16 pt-24 sm:min-h-[720px] sm:pb-24 lg:min-h-[min(820px,80svh)]">
     <div className="max-w-2xl"><p className="text-[9px] uppercase tracking-[.28em] text-white/75">Shades Coimbatore · The new point of view</p><h1 className="mt-6 font-serif text-5xl font-normal leading-[.98] tracking-wide sm:text-7xl lg:text-[88px]">Wear your<br/><em className="font-normal">own rhythm.</em></h1><p className="mt-7 max-w-md text-sm leading-7 text-white/80 sm:text-base">A considered edit of contemporary menswear and everyday essentials. Find the pieces that feel like you.</p><div className="mt-9 flex flex-wrap gap-3"><Link href="/shop" className="inline-flex min-h-12 items-center bg-shades-cream px-7 text-[10px] font-medium uppercase tracking-[.18em] text-shades-charcoal hover:bg-white">Explore the collection ↗</Link><Link href="/about" className="inline-flex min-h-12 items-center border border-white/65 px-7 text-[10px] uppercase tracking-[.18em] text-white hover:bg-white/10">The Shades edit</Link></div></div>
     <p className="mt-12 text-[9px] uppercase tracking-[.2em] text-white/55">Campaign image is a temporary editorial placeholder</p>
    </Container><div className="absolute bottom-8 right-6 hidden text-[9px] uppercase tracking-[.2em] text-white/65 lg:block">01 — The collection</div>
