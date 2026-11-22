@@ -5,7 +5,7 @@ import Link from "next/link";
 import { MAIN_NAV_ITEMS } from "@/lib/navigation";
 import { Container } from "@/components/ui/Container";
 import { IconButton } from "@/components/ui/IconButton";
-import { MenuIcon, BagIcon, MapPinIcon } from "@/components/ui/Icons";
+import { MenuIcon, BagIcon } from "@/components/ui/Icons";
 import { MobileNav } from "@/components/layout/MobileNav";
 
 export function Header() {
@@ -13,25 +13,27 @@ export function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-shades-cream/95 backdrop-blur-md border-b border-shades-beige/60">
-        <Container className="flex items-center justify-between h-16 lg:h-20">
-          {/* Left section: Mobile/tablet trigger & Desktop Navigation */}
-          <div className="flex items-center space-x-6 flex-1">
+      <header className="sticky top-0 z-40 border-b border-shades-beige/60 bg-shades-cream/95 backdrop-blur-md">
+        <Container className="flex h-16 items-center justify-between lg:h-20">
+          <div className="flex flex-1 items-center">
             <IconButton
               onClick={() => setIsMobileNavOpen(true)}
               aria-label="Open navigation menu"
-              className="lg:hidden -ml-2"
+              className=" -ml-2 lg:hidden"
               aria-expanded={isMobileNavOpen}
             >
-              <MenuIcon className="w-5 h-5" />
+              <MenuIcon className="h-5 w-5" />
             </IconButton>
 
-            <nav aria-label="Desktop primary navigation" className="hidden lg:flex items-center space-x-6">
+            <nav
+              aria-label="Primary navigation"
+              className="hidden items-center gap-6 lg:flex"
+            >
               {MAIN_NAV_ITEMS.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
-                  className="text-xs font-sans uppercase tracking-[0.16em] text-shades-charcoal hover:text-shades-forest transition-colors py-1 relative font-medium"
+                  className="relative inline-flex min-h-[44px] items-center py-1 text-xs font-medium uppercase tracking-[0.16em] text-shades-charcoal transition-colors hover:text-shades-forest"
                 >
                   {item.label}
                 </a>
@@ -39,45 +41,34 @@ export function Header() {
             </nav>
           </div>
 
-          {/* Center: Brand Wordmark */}
-          <div className="flex flex-col items-center justify-center flex-shrink-0 text-center px-4">
-            <Link href="/" className="group inline-flex flex-col items-center justify-center min-h-[44px]">
-              <span className="font-serif text-xl sm:text-2xl lg:text-3xl tracking-[0.26em] font-normal uppercase text-shades-charcoal group-hover:text-shades-forest transition-colors">
+          <div className="flex shrink-0 flex-col items-center justify-center px-4 text-center">
+            <Link
+              href="/"
+              className="group inline-flex min-h-[44px] flex-col items-center justify-center"
+            >
+              <span className="font-serif text-xl font-normal uppercase tracking-[0.26em] text-shades-charcoal transition-colors group-hover:text-shades-forest sm:text-2xl lg:text-3xl">
                 SHADES
               </span>
-              <span className="font-sans text-[8px] sm:text-[9px] tracking-[0.32em] uppercase text-shades-stone -mt-0.5 sm:-mt-1">
+              <span className="-mt-0.5 font-sans text-[8px] uppercase tracking-[0.32em] text-shades-stone sm:-mt-1 sm:text-[9px]">
                 Coimbatore
               </span>
             </Link>
           </div>
 
-          {/* Right: Utilities (Store, Bag) */}
-          <div className="flex items-center justify-end space-x-1 sm:space-x-2 flex-1">
-            <a
-              href="#store-info"
-              aria-label="Store Location in Coimbatore"
-              title="Physical Store Location"
-              className="hidden lg:inline-flex items-center gap-1.5 text-xs font-sans uppercase tracking-[0.14em] text-shades-charcoal hover:text-shades-forest px-2 py-1.5 min-h-[44px]"
-            >
-              <MapPinIcon className="w-3.5 h-3.5 text-shades-stone" />
-              <span>Studio</span>
-            </a>
-
-            {/* Bag: placeholder indicator — no click action until cart is implemented */}
+          <div className="flex flex-1 items-center justify-end space-x-1 sm:space-x-2">
             <span
               aria-label="Shopping bag — cart not yet available"
               title="Shopping bag (coming soon)"
-              className="inline-flex items-center gap-1.5 text-xs font-sans uppercase tracking-[0.14em] text-shades-charcoal px-2.5 min-h-[44px] select-none"
+              className="inline-flex min-h-[44px] select-none items-center gap-1.5 px-2.5 text-xs uppercase tracking-[0.14em] text-shades-charcoal"
             >
-              <BagIcon className="w-4 h-4" />
+              <BagIcon className="h-4 w-4" />
               <span className="hidden sm:inline">Bag</span>
-              <span className="text-[11px] text-shades-stone font-normal">(0)</span>
+              <span className="text-[11px] font-normal text-shades-stone">(0)</span>
             </span>
           </div>
         </Container>
       </header>
 
-      {/* Accessible native dialog mobile navigation */}
       <MobileNav
         isOpen={isMobileNavOpen}
         onClose={() => setIsMobileNavOpen(false)}
