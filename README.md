@@ -1,23 +1,28 @@
 # Shades Storefront
 
-Private repository for the Shades Coimbatore customer-facing fashion storefront.
+Private repository for the Shades Coimbatore fashion storefront demonstration.
 
-## Current implementation
-- Cinematic editorial homepage and responsive navigation.
-- Product category browsing, new-arrival and category collections.
-- Continuous rolling clothing showcase with hover/focus pause, touch scrolling and reduced-motion fallback.
-- Product detail pages with size, colour and quantity selection.
-- Local browser-persisted shopping bag.
-- Checkout form preview, search and editorial brand page.
-- Responsive footer and store-information placeholder.
+## Product direction
+A premium, cinematic, editorial fashion experience inspired by the visual references supplied by the client: CANALI-style campaign storytelling, a Nike-style continuous horizontal clothing runway, and interactive product browsing.
 
-## Preview limitations
-The catalogue uses temporary Unsplash editorial images and sample product names, descriptions, prices and variants. Replace these with client-approved product photography and catalogue data before launch. The cart is browser-local only. Checkout is a frontend demonstration: it does not create an order, collect payment, calculate shipping/tax or send customer data to a server.
+## Frontend demonstration scope
+- Full-screen cinematic campaign hero with interactive CSS 3D product-card composition and pointer-reactive tilt.
+- Responsive category discovery and editorial sections.
+- Seamless horizontal rolling product runway with pause-on-hover/focus, touch scrolling and reduced-motion support.
+- Product cards with alternate-image transitions and dimensional hover.
+- Shop catalogue, category collections, product detail, colour/size/quantity selection.
+- Browser-local shopping bag and simulated checkout/order confirmation.
+- Search, editorial/about page, mobile navigation and store-information placeholder.
 
-No real store address, operating hours, contact details, delivery/return policies, stock or payment provider has been invented. Those must be supplied and integrated.
+## Demo-only boundaries
+This is a frontend demonstration. Catalogue names, imagery, prices, variants and stock are sample content. Cart state is stored in the browser. Checkout and order confirmation are simulated locally: no order is sent, no payment is collected, and no personal data is transmitted. Shipping, tax, inventory and customer communications are not connected.
+
+The CSS 3D treatment creates depth, perspective, floating cards and pointer-reactive movement; it does not claim to be a photorealistic WebGL garment model. Actual 3D garment assets can be introduced if supplied later.
+
+No real store address, operating hours, contact details, product catalogue or business policy has been invented.
 
 ## Stack
-Next.js 16.4.6 App Router, React 19.3.0, TypeScript 5.9.3, Tailwind CSS 4.3.5 and pnpm 10.33.0.
+Next.js 16.4.6 App Router, React 19.3.0, TypeScript 5.9.3, Tailwind CSS 4.3.5 and pnpm 10.33.0. No 3D runtime dependency is currently required.
 
 ## Local development
 Run pnpm install --frozen-lockfile, then pnpm dev. Open http://localhost:3000.
@@ -26,4 +31,4 @@ Run pnpm install --frozen-lockfile, then pnpm dev. Open http://localhost:3000.
 Run pnpm lint, pnpm typecheck and pnpm build.
 
 ## Engineering notes
-Work directly on main without force-pushing. Read AGENTS.md and project docs before substantial changes. Never commit secrets or real customer data. Use client-approved assets and business rules for production.
+Work directly on main without force-pushing. Read AGENTS.md and project docs before substantial changes. Never commit secrets or real customer data. Keep demo behavior clearly labelled.

@@ -1,43 +1,46 @@
 # Project State
 
 ## Current stage
-The complete customer-facing frontend preview is implemented and committed on main at c14c282. Local verification and visual review are still required.
+The frontend is being upgraded from a basic storefront preview to a cinematic, dimensional fashion experience. The current visual upgrade is committed after review; local lint, typecheck, build and browser verification remain pending.
 
 ## Repository and stack
 - Repository: VISSHAL-ANAND/shades-storefront (private).
 - Branch: main.
-- Latest storefront implementation: c14c282 (feat: build complete Shades storefront frontend preview).
-- Previous foundation verification commit: 67222d2.
 - Next.js 16.4.6 App Router, React 19.3.0, TypeScript 5.9.3, Tailwind CSS 4.3.5.
 - Node.js v22.20.0 and pnpm 10.33.0 are the established local environment.
+- No additional 3D dependency is planned for this CSS 3D implementation.
 
-## Frontend implemented
-- Editorial homepage with campaign hero, category tiles, new-arrivals grid and store information.
-- Continuous rolling product showcase; CSS loop pauses on hover, focus and active interaction, allows horizontal touch scrolling, and disables motion under prefers-reduced-motion.
-- Shop listing with category filters and sorting.
-- Static collection routes for new arrivals, clothing, accessories, shirts, tees, trousers and layers.
-- Product detail routes with image gallery, colour and size selection, quantity and add-to-bag interaction.
-- Browser-local cart with quantity updates, removal and subtotal.
-- Checkout form preview, catalogue search, editorial/about page, responsive header, mobile dialog navigation and footer.
-- Metadata for main routes and static product/collection params.
+## Visual experience
+- CANALI-inspired cinematic/editorial campaign direction with warm cream, forest, beige and charcoal.
+- Interactive hero composition with three layered product cards, perspective, pointer-reactive tilt and subtle floating movement.
+- Alternate product imagery and dimensional hover transitions on product cards.
+- Continuous horizontal product runway with duplicated items, seamless-loop spacing, hover/focus pause, touch scrolling and reduced-motion fallback.
+- Scroll-reveal progressive enhancement where supported.
+- Responsive layout and existing shopping navigation.
 
-## Preview-only boundaries
-- Product names, images, descriptions, prices, sizes and colours are sample content.
-- Unsplash images are temporary visual assets, not Shades product photography.
-- Cart state is stored in localStorage; no server-side order is created.
-- Checkout does not submit personal data, charge payment, reserve stock or send confirmation.
-- Shipping, taxes, delivery coverage, pickup, returns, refunds, cancellations, GST, customer accounts, address, hours and contact details remain unconfirmed.
-- Razorpay remains a proposed provider only. No live payment integration exists.
-- No backend, inventory API, admin dashboard, POS or deployment has been implemented.
+## Frontend journeys
+- Homepage, categories, new arrivals, shop listing and category collection routes.
+- Product detail with image gallery, colour, size, quantity and add-to-bag.
+- Browser-local shopping bag with quantity updates, removal and subtotal.
+- Search and editorial/about page.
+- Checkout form with local simulated demo order confirmation and reference number.
+- Responsive header, mobile dialog navigation and footer.
+
+## Demo-only boundaries
+- Product names, imagery, descriptions, prices, sizes and colours are sample content.
+- Cart is stored in localStorage only.
+- Checkout success and reference number are generated locally; no server order is created.
+- No payment gateway, live inventory, shipping/tax rules, customer communication, accounts, admin dashboard or POS is connected.
+- Store address, hours, contact and brand-approved product assets remain unconfirmed.
+- The CSS 3D scene is a dimensional presentation, not a true 3D garment viewer. True garment models would require approved model assets.
 
 ## Verification status
-- Previous foundation checks passed locally at commit 67222d2: lint, typecheck and production build.
-- The full storefront commit c14c282 has not been run locally by the assistant. The user must pull latest main and rerun lint, typecheck and build.
-- Browser checks, image loading, touch scrolling, dialog behavior, accessibility and performance still require local visual verification.
+- Foundation checks passed locally at commit 67222d2.
+- The new cinematic/3D visual upgrade has not been run locally by the assistant. User must pull latest main and run lint, typecheck and build.
+- Browser checks at 390px, 768px, 1024px and 1440px; showcase loop, pointer interaction, reduced motion, checkout demo, image loading and accessibility remain to be verified.
 
 ## Next actions
-1. Pull latest main and run lint, typecheck and production build.
-2. Start the app and inspect desktop and mobile layouts.
-3. Test showcase motion, touch scrolling, reduced-motion, product selection, cart persistence, search and checkout preview.
-4. Replace sample content and imagery only after the client supplies approved assets and catalogue data.
-5. Confirm operational and payment requirements before backend integration.
+1. Pull latest main and run pnpm lint, pnpm typecheck and pnpm build.
+2. Start the site and inspect the hero, rolling runway, product cards, shop, product detail and demo checkout.
+3. Verify responsive layout, keyboard/touch behavior and reduced-motion.
+4. Replace sample imagery and catalogue only when approved Shades assets/data are supplied.

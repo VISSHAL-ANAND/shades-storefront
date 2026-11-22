@@ -1,14 +1,53 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import {useMemo,useState,type FormEvent} from "react";
+import {useMemo,useState,type FormEvent,type PointerEvent as ReactPointerEvent} from "react";
 import {PRODUCTS,CATEGORIES,formatPrice,type Product,type Category} from "@/lib/products";
 import {useCart} from "@/context/CartContext";
 import {Button} from "@/components/ui/Button";
 
+
+export function CinematicHero(){
+ const heroProducts=[PRODUCTS[0],PRODUCTS[2],PRODUCTS[3]];
+ function moveScene(event:ReactPointerEvent<HTMLDivElement>){
+  if(event.pointerType!=="mouse")return;
+  const rect=event.currentTarget.getBoundingClientRect();
+  const x=(event.clientX-rect.left)/rect.width-.5;
+  const y=(event.clientY-rect.top)/rect.height-.5;
+  event.currentTarget.style.setProperty("--scene-rotate-x",String(-y*8)+"deg");
+  event.currentTarget.style.setProperty("--scene-rotate-y",String(x*11)+"deg");
+ }
+ function resetScene(event:ReactPointerEvent<HTMLDivElement>){
+  event.currentTarget.style.setProperty("--scene-rotate-x","0deg");
+  event.currentTarget.style.setProperty("--scene-rotate-y","0deg");
+ }
+ return <section className="cinematic-hero text-shades-cream">
+  <Image src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=2200&q=90" alt="" fill priority sizes="100vw" className="cinematic-hero__backdrop"/>
+  <div className="cinematic-hero__veil"/>
+  <div className="cinematic-hero__grain"/>
+  <div className="relative z-10 mx-auto grid min-h-[850px] max-w-7xl items-center gap-2 px-4 pb-16 pt-24 sm:px-6 lg:min-h-[min(850px,88svh)] lg:grid-cols-[.88fr_1.12fr] lg:px-12 lg:py-16">
+   <div className="hero-copy relative z-20 max-w-2xl pt-6 lg:pt-0">
+    <p className="flex items-center gap-3 text-[9px] uppercase tracking-[.3em] text-white/75"><span className="h-px w-8 bg-white/60"/>Shades Coimbatore · The new point of view</p>
+    <h1 className="mt-7 font-serif text-[clamp(3.6rem,8vw,7.4rem)] font-normal leading-[.88] tracking-[-.045em]">Wear your<br/><em className="font-normal">own rhythm.</em></h1>
+    <p className="mt-7 max-w-md text-sm leading-7 text-white/80 sm:text-base">A considered edit of contemporary menswear and everyday essentials. Find the pieces that feel like you.</p>
+    <div className="mt-9 flex flex-wrap gap-3"><Link href="/shop" className="inline-flex min-h-12 items-center bg-shades-cream px-7 text-[10px] font-medium uppercase tracking-[.18em] text-shades-charcoal transition-colors hover:bg-white">Explore the collection <span className="ml-3">↗</span></Link><Link href="/about" className="inline-flex min-h-12 items-center border border-white/65 px-7 text-[10px] uppercase tracking-[.18em] text-white transition-colors hover:bg-white/10">The Shades edit</Link></div>
+    <div className="mt-12 flex items-center gap-4 text-[9px] uppercase tracking-[.18em] text-white/55"><span>01 / 03</span><span className="h-px w-12 bg-white/35"/><span>Discover the collection</span></div>
+   </div>
+   <div className="hero-3d-scene" onPointerMove={moveScene} onPointerLeave={resetScene} aria-label="Interactive three-dimensional preview of selected collection pieces">
+    <div className="hero-3d-halo hero-3d-halo--one"/><div className="hero-3d-halo hero-3d-halo--two"/>
+    <Link href={"/product/"+heroProducts[1].slug} className="hero-3d-card hero-3d-card--left" aria-label={"Explore "+heroProducts[1].name}><div className="hero-3d-card__image"><Image src={heroProducts[1].image} alt={heroProducts[1].alt} fill sizes="(max-width:768px) 35vw,22vw"/></div><span className="hero-3d-card__caption">{heroProducts[1].categoryLabel}</span></Link>
+    <Link href={"/product/"+heroProducts[0].slug} className="hero-3d-card hero-3d-card--main" aria-label={"Explore "+heroProducts[0].name}><div className="hero-3d-card__image"><Image src={heroProducts[0].image} alt={heroProducts[0].alt} fill priority sizes="(max-width:768px) 52vw,30vw"/></div><span className="hero-3d-card__caption"><span>{heroProducts[0].name}</span><span>↗</span></span></Link>
+    <Link href={"/product/"+heroProducts[2].slug} className="hero-3d-card hero-3d-card--right" aria-label={"Explore "+heroProducts[2].name}><div className="hero-3d-card__image"><Image src={heroProducts[2].image} alt={heroProducts[2].alt} fill sizes="(max-width:768px) 32vw,20vw"/></div><span className="hero-3d-card__caption">{heroProducts[2].categoryLabel}</span></Link>
+    <p className="hero-3d-note">A closer look at the edit <span>✳</span></p>
+   </div>
+  </div>
+  <div className="cinematic-hero__index"><span>COIMBATORE</span><span>EST. / SHADES</span></div>
+ </section>;
+}
+
 export function ProductCard({product}:{product:Product}){
  return <article className="group"><Link href={"/product/"+product.slug} className="block">
-  <div className="relative aspect-[3/4] overflow-hidden bg-[#e9e5dd]"><Image src={product.image} alt={product.alt} fill sizes="(max-width:640px) 48vw,(max-width:1024px) 30vw,23vw" className="object-cover transition-transform duration-700 group-hover:scale-105"/>{product.badge&&<span className="absolute left-3 top-3 bg-shades-cream/95 px-3 py-1.5 text-[9px] uppercase tracking-[.15em]">{product.badge}</span>}<span className="absolute bottom-3 right-3 translate-y-2 bg-shades-cream px-3 py-2 text-[9px] uppercase tracking-[.15em] opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">View piece</span></div>
+  <div className="product-card-media relative aspect-[3/4] overflow-hidden bg-[#e9e5dd]"><Image src={product.image} alt={product.alt} fill sizes="(max-width:640px) 48vw,(max-width:1024px) 30vw,23vw" className="product-card-image product-card-image--primary object-cover"/><Image src={product.secondaryImage} alt="" aria-hidden="true" fill sizes="(max-width:640px) 48vw,(max-width:1024px) 30vw,23vw" className="product-card-image product-card-image--secondary object-cover"/>{product.badge&&<span className="absolute left-3 top-3 z-10 bg-shades-cream/95 px-3 py-1.5 text-[9px] uppercase tracking-[.15em]">{product.badge}</span>}<span className="product-card-cta absolute bottom-3 right-3 z-10 translate-y-2 bg-shades-cream px-3 py-2 text-[9px] uppercase tracking-[.15em] opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">View piece ↗</span></div>
   <div className="flex justify-between gap-2 pt-4"><div><p className="text-[9px] uppercase tracking-[.17em] text-shades-stone">{product.categoryLabel}</p><h3 className="mt-1 font-serif text-base sm:text-lg">{product.name}</h3></div><p className="shrink-0 pt-4 text-xs">{formatPrice(product.price)}</p></div>
  </Link></article>;
 }
@@ -33,7 +72,7 @@ export function ShopExperience({initialCategory}:{initialCategory?:string}){
 export function ProductDetails({product}:{product:Product}){
  const [size,setSize]=useState(product.sizes[0]);const [color,setColor]=useState(product.colors[0].name);const [qty,setQty]=useState(1);const [added,setAdded]=useState(false);const {addItem}=useCart();
  function add(){addItem({productId:product.id,size,color,quantity:qty});setAdded(true);}
- return <div className="grid gap-10 lg:grid-cols-[1.05fr_.95fr] lg:gap-20"><div className="grid grid-cols-2 gap-3"><div className="relative col-span-2 aspect-[4/5] overflow-hidden bg-[#e9e5dd] sm:col-span-1"><Image src={product.image} alt={product.alt} fill priority sizes="(max-width:1024px) 100vw,50vw" className="object-cover"/></div><div className="relative hidden aspect-[4/5] overflow-hidden bg-[#e9e5dd] sm:block"><Image src={product.secondaryImage} alt={"Alternate view of "+product.name} fill sizes="25vw" className="object-cover"/></div></div>
+ return <div className="grid gap-10 lg:grid-cols-[1.05fr_.95fr] lg:gap-20"><div className="grid grid-cols-2 gap-3"><div className="product-gallery-frame relative col-span-2 aspect-[4/5] overflow-hidden bg-[#e9e5dd] sm:col-span-1"><Image src={product.image} alt={product.alt} fill priority sizes="(max-width:1024px) 100vw,50vw" className="object-cover"/></div><div className="product-gallery-frame relative hidden aspect-[4/5] overflow-hidden bg-[#e9e5dd] sm:block"><Image src={product.secondaryImage} alt={"Alternate view of "+product.name} fill sizes="25vw" className="object-cover"/></div></div>
  <div className="lg:sticky lg:top-32 lg:self-start"><Link href="/shop" className="text-[9px] uppercase tracking-[.2em] text-shades-stone">Shop / {product.categoryLabel}</Link><p className="mt-7 text-[10px] uppercase tracking-[.2em] text-shades-forest">{product.categoryLabel}</p><h1 className="mt-3 font-serif text-3xl leading-tight sm:text-4xl">{product.name}</h1><p className="mt-5 text-lg">{formatPrice(product.price)}</p><p className="mt-2 text-[9px] uppercase tracking-[.15em] text-shades-stone">Preview price · sample catalogue only</p><p className="mt-8 max-w-lg text-sm leading-7 text-shades-stone">{product.description}</p>
  <div className="mt-8 border-t border-shades-beige pt-6"><p className="text-[10px] uppercase tracking-[.17em]">Colour / {color}</p><div className="mt-4 flex gap-3">{product.colors.map(c=><button key={c.name} type="button" onClick={()=>setColor(c.name)} aria-label={"Select "+c.name} aria-pressed={color===c.name} className={"h-8 w-8 rounded-full border-2 p-0.5 "+(color===c.name?"border-shades-charcoal":"border-transparent")}><span className="block h-full w-full rounded-full border border-black/10" style={{backgroundColor:c.value}}/></button>)}</div></div>
  <div className="mt-7"><div className="flex justify-between gap-3"><p className="text-[10px] uppercase tracking-[.17em]">Select size</p><span className="text-[10px] text-shades-stone">Size guide pending measurements</span></div><div className="mt-3 grid grid-cols-5 gap-2">{product.sizes.map(s=><button key={s} type="button" onClick={()=>setSize(s)} aria-pressed={size===s} className={"min-h-11 border text-xs "+(size===s?"border-shades-charcoal bg-shades-charcoal text-shades-cream":"border-shades-beige")}>{s}</button>)}</div></div>
@@ -50,9 +89,15 @@ export function CartView(){
 }
 
 export function CheckoutForm(){
- const {subtotal,count}=useCart();const [done,setDone]=useState(false);
- function submit(event:FormEvent<HTMLFormElement>){event.preventDefault();setDone(true);}
- if(done)return <div className="border border-shades-beige bg-white/70 p-8 sm:p-12"><p className="text-[10px] uppercase tracking-[.2em] text-shades-forest">Frontend demonstration</p><h2 className="mt-4 font-serif text-3xl">Checkout flow previewed.</h2><p className="mt-4 max-w-xl text-sm leading-7 text-shades-stone">No order was created and no payment was taken. The store API, payment provider, shipping rules and order confirmation flow must be connected before this accepts real orders.</p><Link href="/cart" className="mt-8 inline-flex min-h-11 items-center border border-shades-charcoal px-6 text-xs uppercase tracking-[.16em] hover:bg-shades-charcoal hover:text-shades-cream">Return to bag</Link></div>;
+ const {subtotal,count,lines,clearCart}=useCart();
+ const [confirmation,setConfirmation]=useState<{reference:string;items:{name:string;quantity:number;size:string;color:string;total:number}[];total:number}|null>(null);
+ function submit(event:FormEvent<HTMLFormElement>){
+  event.preventDefault();
+  const items=lines.flatMap(line=>{const product=PRODUCTS.find(p=>p.id===line.productId);return product?[{name:product.name,quantity:line.quantity,size:line.size,color:line.color,total:product.price*line.quantity}]:[];});
+  setConfirmation({reference:"SHD-DEMO-"+String(Date.now()).slice(-6),items,total:subtotal});
+  clearCart();
+ }
+ if(confirmation)return <div className="mx-auto max-w-3xl border border-shades-beige bg-white/75 p-7 sm:p-12"><div className="flex h-14 w-14 items-center justify-center rounded-full bg-shades-forest text-2xl text-white">✓</div><p className="mt-8 text-[10px] uppercase tracking-[.2em] text-shades-forest">Demo order confirmed</p><h2 className="mt-3 font-serif text-4xl sm:text-5xl">Consider it yours.</h2><p className="mt-4 max-w-xl text-sm leading-7 text-shades-stone">Your sample checkout journey is complete. This confirmation is generated locally for demonstration only; no order was sent to Shades and no payment was taken.</p><div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-y border-shades-beige py-5"><div><p className="text-[9px] uppercase tracking-[.17em] text-shades-stone">Demo reference</p><p className="mt-1 text-sm font-medium tracking-[.08em]">{confirmation.reference}</p></div><div className="text-right"><p className="text-[9px] uppercase tracking-[.17em] text-shades-stone">Demo total</p><p className="mt-1 text-lg">{formatPrice(confirmation.total)}</p></div></div><div className="mt-7 space-y-4">{confirmation.items.map((item,index)=><div key={item.name+item.size+index} className="flex justify-between gap-4 text-sm"><div><p>{item.name}</p><p className="mt-1 text-xs text-shades-stone">{item.color} · Size {item.size} · Qty {item.quantity}</p></div><p className="shrink-0">{formatPrice(item.total)}</p></div>)}</div><div className="mt-9 flex flex-wrap gap-3"><Link href="/shop" className="inline-flex min-h-11 items-center bg-shades-charcoal px-6 text-xs uppercase tracking-[.16em] text-shades-cream">Continue exploring</Link><Link href="/" className="inline-flex min-h-11 items-center border border-shades-charcoal px-6 text-xs uppercase tracking-[.16em]">Back to home</Link></div></div>;
  return <div className="grid gap-12 lg:grid-cols-[1fr_360px]"><form onSubmit={submit} className="space-y-8"><section><p className="text-[9px] uppercase tracking-[.2em] text-shades-stone">01 / Contact</p><h2 className="mt-2 font-serif text-2xl">Your details</h2><div className="mt-5 grid gap-4 sm:grid-cols-2"><label className="field-label">Full name<input required autoComplete="name" className="field-input" placeholder="Your name"/></label><label className="field-label">Email address<input required type="email" autoComplete="email" className="field-input" placeholder="you@example.com"/></label><label className="field-label sm:col-span-2">Phone number<input required type="tel" autoComplete="tel" className="field-input" placeholder="Mobile number"/></label></div></section><section className="border-t border-shades-beige pt-8"><p className="text-[9px] uppercase tracking-[.2em] text-shades-stone">02 / Address</p><h2 className="mt-2 font-serif text-2xl">Where should we send it?</h2><div className="mt-5 grid gap-4 sm:grid-cols-2"><label className="field-label sm:col-span-2">Address<input required autoComplete="street-address" className="field-input" placeholder="House number, street and area"/></label><label className="field-label">City<input required autoComplete="address-level2" className="field-input" placeholder="City"/></label><label className="field-label">PIN code<input required inputMode="numeric" pattern="[0-9]{6}" autoComplete="postal-code" className="field-input" placeholder="6-digit PIN code"/></label></div></section><p className="border border-shades-beige bg-white/60 p-5 text-xs leading-6 text-shades-stone">Frontend demo only. Do not enter real personal or payment information. Data is not sent to a server. Delivery coverage, returns and payment processing are not configured.</p><Button type="submit">Preview checkout flow</Button></form><aside className="h-fit border border-shades-beige p-6 sm:p-8"><h2 className="font-serif text-2xl">Order summary</h2><div className="mt-6 flex justify-between border-b border-shades-beige pb-4 text-sm"><span>{count} items</span><span>{formatPrice(subtotal)}</span></div><div className="mt-4 flex justify-between text-sm"><span>Subtotal</span><span>{formatPrice(subtotal)}</span></div><p className="mt-4 text-xs leading-6 text-shades-stone">Shipping and taxes are not included.</p><div className="mt-6 flex justify-between border-t border-shades-beige pt-5 text-sm font-medium"><span>Estimated total</span><span>{formatPrice(subtotal)}</span></div></aside></div>;
 }
 

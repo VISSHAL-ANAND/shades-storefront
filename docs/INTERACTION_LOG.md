@@ -1,9 +1,9 @@
 # Interaction Log
 
-## Full storefront request
-- User clarified that the prior design-system shell was not the expected finished website: clothing catalogue and rolling animation were missing.
-- User requested the complete frontend be built in one consolidated effort.
-- Implemented a full preview storefront with editorial homepage, temporary clothing/accessory imagery, categories, rolling showcase, shop and collection pages, product detail selectors, local bag, checkout demonstration, search and editorial/about page.
-- Sample catalogue content and stock imagery are explicitly temporary; no client product data or operational policies were invented.
-- Live backend, inventory, payment and order creation remain outside this frontend preview until client inputs are confirmed.
-- Local lint/typecheck/build and browser verification are pending after the new implementation.
+## Cinematic 3D frontend direction
+- User clarified the current deliverable is a frontend demonstration only. Real payment processing, live stock, real order creation, shipping/tax/policy integrations and backend confirmation are not required.
+- User wants the site to feel premium, cinematic and highly dimensional, matching the previously shared CANALI campaign, Nike-style horizontal clothing lineup and interactive product browsing references.
+- Implemented an interactive CSS 3D hero composition, pointer-reactive tilt, floating product cards, alternate-image product-card transitions, scroll-reveal enhancement and refined horizontal runway motion.
+- Checkout now simulates a local demo order confirmation with a demo reference and summary; no order or payment is sent or created on a server.
+- Product catalogue and imagery remain sample placeholders, not actual Shades inventory.
+- Local lint/typecheck/build and browser verification are pending.
